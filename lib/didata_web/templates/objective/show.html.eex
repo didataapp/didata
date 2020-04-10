@@ -1,0 +1,13 @@
+<h1>Show Objective</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @objective.name %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.objective_path(@conn, :edit, @objective) %></span>
+<span><%= link "Back", to: Routes.objective_path(@conn, :index) %></span>
