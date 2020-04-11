@@ -17,5 +17,6 @@ defmodule DidataWeb.Router do
     resources "/objectives", ObjectiveController
     resources "/areas", AreaController
     resources "/disciplines", DisciplineController
+    resources "/topics", TopicController
   end
 end

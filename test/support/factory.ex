@@ -24,7 +24,8 @@ defmodule Didata.Factory do
   alias Didata.Studies.{
     Area,
     Discipline,
-    Objective
+    Objective,
+    Topic
   }
 
   def objective_factory do
@@ -45,6 +46,13 @@ defmodule Didata.Factory do
     %Discipline{
       name: "Matematica",
       area: build(:area)
+    }
+  end
+
+  def topic_factory do
+    %Topic{
+      name: "conhecimentos numericos",
+      discipline: build(:discipline)
     }
   end
 end

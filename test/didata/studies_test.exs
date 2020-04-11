@@ -165,4 +165,58 @@ defmodule Didata.StudiesTest do
       assert %Ecto.Changeset{} = Studies.change_discipline(discipline)
     end
   end
+
+  describe "topics" do
+    alias Didata.Studies.Topic
+
+    @valid_attrs %{name: "some name"}
+    @update_attrs %{name: "some updated name"}
+    @invalid_attrs %{name: nil}
+
+    test "list_topics/0 returns all topics" do
+      topic = insert(:topic)
+      assert Studies.list_topics() == [topic]
+    end
+
+    test "get_topic!/1 returns the topic with given id" do
+      topic = insert(:topic)
+      assert Studies.get_topic!(topic.id) == topic
+    end
+
+    test "create_topic/1 with valid data creates a topic" do
+      discipline = insert(:discipline)
+
+      assert {:ok, %Topic{} = topic} =
+               Studies.create_topic(Map.merge(@valid_attrs, %{discipline_id: discipline.id}))
+
+      assert topic.name == "some name"
+    end
+
+    test "create_topic/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Studies.create_topic(@invalid_attrs)
+    end
+
+    test "update_topic/2 with valid data updates the topic" do
+      topic = insert(:topic)
+      assert {:ok, %Topic{} = topic} = Studies.update_topic(topic, @update_attrs)
+      assert topic.name == "some updated name"
+    end
+
+    test "update_topic/2 with invalid data returns error changeset" do
+      topic = insert(:topic)
+      assert {:error, %Ecto.Changeset{}} = Studies.update_topic(topic, @invalid_attrs)
+      assert topic == Studies.get_topic!(topic.id)
+    end
+
+    test "delete_topic/1 deletes the topic" do
+      topic = insert(:topic)
+      assert {:ok, %Topic{}} = Studies.delete_topic(topic)
+      assert_raise Ecto.NoResultsError, fn -> Studies.get_topic!(topic.id) end
+    end
+
+    test "change_topic/1 returns a topic changeset" do
+      topic = insert(:topic)
+      assert %Ecto.Changeset{} = Studies.change_topic(topic)
+    end
+  end
 end
