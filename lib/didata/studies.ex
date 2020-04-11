@@ -131,7 +131,7 @@ defmodule Didata.Studies do
       ** (Ecto.NoResultsError)
 
   """
-  def get_area!(id), do: Repo.get!(Area, id)
+  def get_area!(id), do: Repo.get!(Area, id) |> Repo.preload(:objective)
 
   @doc """
   Creates a area.

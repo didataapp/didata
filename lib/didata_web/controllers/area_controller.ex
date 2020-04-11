@@ -11,7 +11,8 @@ defmodule DidataWeb.AreaController do
 
   def new(conn, _params) do
     changeset = Studies.change_area(%Area{})
-    render(conn, "new.html", changeset: changeset)
+    objectives = Studies.list_objectives()
+    render(conn, "new.html", objectives: objectives, changeset: changeset)
   end
 
   def create(conn, %{"area" => area_params}) do
@@ -22,7 +23,8 @@ defmodule DidataWeb.AreaController do
         |> redirect(to: Routes.area_path(conn, :show, area))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        objectives = Studies.list_objectives()
+        render(conn, "new.html", objectives: objectives, changeset: changeset)
     end
   end
 
@@ -34,7 +36,9 @@ defmodule DidataWeb.AreaController do
   def edit(conn, %{"id" => id}) do
     area = Studies.get_area!(id)
     changeset = Studies.change_area(area)
-    render(conn, "edit.html", area: area, changeset: changeset)
+    objectives = Studies.list_objectives()
+
+    render(conn, "edit.html", area: area, objectives: objectives, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "area" => area_params}) do
@@ -47,7 +51,8 @@ defmodule DidataWeb.AreaController do
         |> redirect(to: Routes.area_path(conn, :show, area))
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", area: area, changeset: changeset)
+        objectives = Studies.list_objectives()
+        render(conn, "edit.html", area: area, objectives: objectives, changeset: changeset)
     end
   end
 

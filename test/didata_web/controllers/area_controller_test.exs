@@ -5,10 +5,12 @@ defmodule DidataWeb.AreaControllerTest do
 
   @create_attrs %{name: "some name", number: 42}
   @update_attrs %{name: "some updated name", number: 43}
-  @invalid_attrs %{name: nil, number: nil}
+  @invalid_attrs %{name: nil, number: nil, objective_id: nil}
 
   def fixture(:area) do
-    {:ok, area} = Studies.create_area(@create_attrs)
+    {:ok, objective} = Studies.create_objective(%{name: "ENEM"})
+    {:ok, area} = Studies.create_area(Map.merge(@create_attrs, %{objective_id: objective.id}))
+
     area
   end
 
@@ -28,7 +30,8 @@ defmodule DidataWeb.AreaControllerTest do
 
   describe "create area" do
     test "redirects to show when data is valid", %{conn: conn} do
-      conn = post(conn, Routes.area_path(conn, :create), area: @create_attrs)
+      {:ok, objective} = Studies.create_objective(%{name: "ENEM"})
+      conn = post(conn, Routes.area_path(conn, :create), area: Map.merge(@create_attrs, %{objective_id: objective.id}))
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == Routes.area_path(conn, :show, id)

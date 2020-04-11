@@ -2,6 +2,7 @@ defmodule Didata.StudiesTest do
   use Didata.DataCase
 
   alias Didata.Studies
+  alias Didata.Repo
 
   describe "objectives" do
     alias Didata.Studies.Objective
@@ -70,9 +71,14 @@ defmodule Didata.StudiesTest do
     @invalid_attrs %{name: nil, number: nil}
 
     def area_fixture(attrs \\ %{}) do
+      {:ok, objective} =
+        attrs
+        |> Enum.into(%{name: "ENEM"})
+        |> Studies.create_objective()
+
       {:ok, area} =
         attrs
-        |> Enum.into(@valid_attrs)
+        |> Enum.into(Map.merge(@valid_attrs, %{objective_id: objective.id}))
         |> Studies.create_area()
 
       area
@@ -84,12 +90,13 @@ defmodule Didata.StudiesTest do
     end
 
     test "get_area!/1 returns the area with given id" do
-      area = area_fixture()
+      area = area_fixture() |> Repo.preload(:objective)
       assert Studies.get_area!(area.id) == area
     end
 
     test "create_area/1 with valid data creates a area" do
-      assert {:ok, %Area{} = area} = Studies.create_area(@valid_attrs)
+      {:ok, objective} = Studies.create_objective(%{name: "ENEM"})
+      assert {:ok, %Area{} = area} = Studies.create_area(Map.merge(@valid_attrs, %{objective_id: objective.id}))
       assert area.name == "some name"
       assert area.number == 42
     end
@@ -106,7 +113,7 @@ defmodule Didata.StudiesTest do
     end
 
     test "update_area/2 with invalid data returns error changeset" do
-      area = area_fixture()
+      area = area_fixture() |> Repo.preload(:objective)
       assert {:error, %Ecto.Changeset{}} = Studies.update_area(area, @invalid_attrs)
       assert area == Studies.get_area!(area.id)
     end
