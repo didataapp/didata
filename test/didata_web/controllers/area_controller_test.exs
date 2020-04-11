@@ -7,13 +7,6 @@ defmodule DidataWeb.AreaControllerTest do
   @update_attrs %{name: "some updated name", number: 43}
   @invalid_attrs %{name: nil, number: nil, objective_id: nil}
 
-  def fixture(:area) do
-    {:ok, objective} = Studies.create_objective(%{name: "ENEM"})
-    {:ok, area} = Studies.create_area(Map.merge(@create_attrs, %{objective_id: objective.id}))
-
-    area
-  end
-
   describe "index" do
     test "lists all areas", %{conn: conn} do
       conn = get(conn, Routes.area_path(conn, :index))
@@ -90,7 +83,6 @@ defmodule DidataWeb.AreaControllerTest do
   end
 
   defp create_area(_) do
-    area = fixture(:area)
-    {:ok, area: area}
+    {:ok, area: insert(:area)}
   end
 end

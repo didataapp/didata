@@ -26,6 +26,7 @@ defmodule Didata.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import Didata.DataCase
+      import Didata.Factory
     end
   end
 

@@ -1,16 +1,9 @@
 defmodule DidataWeb.ObjectiveControllerTest do
   use DidataWeb.ConnCase
 
-  alias Didata.Studies
-
   @create_attrs %{name: "ENEM"}
   @update_attrs %{name: "ENEM 2021"}
   @invalid_attrs %{name: nil}
-
-  def fixture(:objective) do
-    {:ok, objective} = Studies.create_objective(@create_attrs)
-    objective
-  end
 
   describe "index" do
     test "lists all objectives", %{conn: conn} do
@@ -83,7 +76,6 @@ defmodule DidataWeb.ObjectiveControllerTest do
   end
 
   defp create_objective(_) do
-    objective = fixture(:objective)
-    {:ok, objective: objective}
+    {:ok, objective: insert(:objective)}
   end
 end

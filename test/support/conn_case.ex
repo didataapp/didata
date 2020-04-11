@@ -24,6 +24,8 @@ defmodule DidataWeb.ConnCase do
       use Phoenix.ConnTest
       alias DidataWeb.Router.Helpers, as: Routes
 
+      import Didata.Factory
+
       # The default endpoint for testing
       @endpoint DidataWeb.Endpoint
     end
