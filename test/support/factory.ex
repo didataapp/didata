@@ -21,7 +21,11 @@ defmodule Didata.Factory do
 
   use ExMachina.Ecto, repo: Didata.Repo
 
-  alias Didata.Studies.{Area, Objective}
+  alias Didata.Studies.{
+    Area,
+    Discipline,
+    Objective
+  }
 
   def objective_factory do
     %Objective{
@@ -34,6 +38,13 @@ defmodule Didata.Factory do
       name: "Matematica e suas Tecnologias",
       number: 2,
       objective: build(:objective)
+    }
+  end
+
+  def discipline_factory do
+    %Discipline{
+      name: "Matematica",
+      area: build(:area)
     }
   end
 end

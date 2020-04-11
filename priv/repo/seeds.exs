@@ -1,5 +1,10 @@
 alias Didata.Repo
-alias Didata.Studies.{Area, Objective}
+
+alias Didata.Studies.{
+  Area,
+  Discipline,
+  Objective
+}
 
 enem =
   %Objective{name: "ENEM"}
@@ -12,3 +17,8 @@ matematica_area =
     objective_id: enem.id
   }
   |> Repo.insert!()
+
+matematica = %Discipline{
+  name: "Matematica",
+  area_id: matematica_area.id
+}

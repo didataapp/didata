@@ -13,7 +13,9 @@ defmodule DidataWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
     resources "/objectives", ObjectiveController
     resources "/areas", AreaController
+    resources "/disciplines", DisciplineController
   end
 end

@@ -108,4 +108,61 @@ defmodule Didata.StudiesTest do
       assert %Ecto.Changeset{} = Studies.change_area(area)
     end
   end
+
+  describe "disciplines" do
+    alias Didata.Studies.Discipline
+
+    @valid_attrs %{name: "some name"}
+    @update_attrs %{name: "some updated name"}
+    @invalid_attrs %{name: nil}
+
+    test "list_disciplines/0 returns all disciplines" do
+      discipline = insert(:discipline)
+      assert Enum.map(Studies.list_disciplines(), fn d -> d.id end) == [discipline.id]
+    end
+
+    test "get_discipline!/1 returns the discipline with given id" do
+      discipline = insert(:discipline)
+      assert Studies.get_discipline!(discipline.id).name == discipline.name
+    end
+
+    test "create_discipline/1 with valid data creates a discipline" do
+      area = insert(:area)
+
+      assert {:ok, %Discipline{} = discipline} =
+               Studies.create_discipline(Map.merge(@valid_attrs, %{area_id: area.id}))
+
+      assert discipline.name == "some name"
+    end
+
+    test "create_discipline/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Studies.create_discipline(@invalid_attrs)
+    end
+
+    test "update_discipline/2 with valid data updates the discipline" do
+      discipline = insert(:discipline)
+
+      assert {:ok, %Discipline{} = discipline} =
+               Studies.update_discipline(discipline, @update_attrs)
+
+      assert discipline.name == "some updated name"
+    end
+
+    test "update_discipline/2 with invalid data returns error changeset" do
+      discipline = insert(:discipline)
+      assert {:error, %Ecto.Changeset{}} = Studies.update_discipline(discipline, @invalid_attrs)
+      assert discipline.name == Studies.get_discipline!(discipline.id).name
+    end
+
+    test "delete_discipline/1 deletes the discipline" do
+      discipline = insert(:discipline)
+      assert {:ok, %Discipline{}} = Studies.delete_discipline(discipline)
+      assert_raise Ecto.NoResultsError, fn -> Studies.get_discipline!(discipline.id) end
+    end
+
+    test "change_discipline/1 returns a discipline changeset" do
+      discipline = insert(:discipline)
+      assert %Ecto.Changeset{} = Studies.change_discipline(discipline)
+    end
+  end
 end

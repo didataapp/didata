@@ -1,0 +1,28 @@
+<h1 class="title">Listing Disciplines</h1>
+
+<div>
+  <%= link "New Discipline", to: Routes.discipline_path(@conn, :new), class: "button is-primary" %>
+</div>
+
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for discipline <- @disciplines do %>
+        <tr>
+          <td><%= discipline.name %></td>
+          <td>
+            <span><%= link "Show", to: Routes.discipline_path(@conn, :show, discipline), class: "button is-small" %></span>
+            <span><%= link "Edit", to: Routes.discipline_path(@conn, :edit, discipline), class: "button is-small is-primary" %></span>
+            <span><%= link "Delete", to: Routes.discipline_path(@conn, :delete, discipline), method: :delete, data: [confirm: "Are you sure?"], class: "button is-small is-danger" %></span>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

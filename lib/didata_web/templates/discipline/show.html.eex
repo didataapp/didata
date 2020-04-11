@@ -1,0 +1,18 @@
+<h1 class="title">Show Discipline</h1>
+
+<ul>
+
+  <li>
+    <strong>Area:</strong>
+    <%= @discipline.area.name %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @discipline.name %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.discipline_path(@conn, :edit, @discipline), class: "button is-primary" %></span>
+<span><%= link "Back", to: Routes.discipline_path(@conn, :index), class: "button" %></span>
