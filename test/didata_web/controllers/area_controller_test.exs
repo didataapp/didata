@@ -31,7 +31,11 @@ defmodule DidataWeb.AreaControllerTest do
   describe "create area" do
     test "redirects to show when data is valid", %{conn: conn} do
       {:ok, objective} = Studies.create_objective(%{name: "ENEM"})
-      conn = post(conn, Routes.area_path(conn, :create), area: Map.merge(@create_attrs, %{objective_id: objective.id}))
+
+      conn =
+        post(conn, Routes.area_path(conn, :create),
+          area: Map.merge(@create_attrs, %{objective_id: objective.id})
+        )
 
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == Routes.area_path(conn, :show, id)
@@ -78,6 +82,7 @@ defmodule DidataWeb.AreaControllerTest do
     test "deletes chosen area", %{conn: conn, area: area} do
       conn = delete(conn, Routes.area_path(conn, :delete, area))
       assert redirected_to(conn) == Routes.area_path(conn, :index)
+
       assert_error_sent 404, fn ->
         get(conn, Routes.area_path(conn, :show, area))
       end

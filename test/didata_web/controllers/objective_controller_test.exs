@@ -75,6 +75,7 @@ defmodule DidataWeb.ObjectiveControllerTest do
     test "deletes chosen objective", %{conn: conn, objective: objective} do
       conn = delete(conn, Routes.objective_path(conn, :delete, objective))
       assert redirected_to(conn) == Routes.objective_path(conn, :index)
+
       assert_error_sent 404, fn ->
         get(conn, Routes.objective_path(conn, :show, objective))
       end
