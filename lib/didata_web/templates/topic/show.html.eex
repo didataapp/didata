@@ -1,0 +1,17 @@
+<h1 class="title">Show Topic</h1>
+
+<ul>
+  <li>
+    <strong>Discipline:</strong>
+    <%= @topic.discipline.name %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @topic.name %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.topic_path(@conn, :edit, @topic), class: "button is-primary" %></span>
+<span><%= link "Back", to: Routes.topic_path(@conn, :index), class: "button" %></span>

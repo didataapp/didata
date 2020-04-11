@@ -3,7 +3,8 @@ alias Didata.Repo
 alias Didata.Studies.{
   Area,
   Discipline,
-  Objective
+  Objective,
+  Topic
 }
 
 enem =
@@ -18,7 +19,16 @@ matematica_area =
   }
   |> Repo.insert!()
 
-matematica = %Discipline{
-  name: "Matematica",
-  area_id: matematica_area.id
-}
+matematica =
+  %Discipline{
+    name: "Matematica",
+    area_id: matematica_area.id
+  }
+  |> Repo.insert!()
+
+_topic_1 =
+  %Topic{
+    name: "conhecimentos numericos",
+    discipline_id: matematica.id
+  }
+  |> Repo.insert!()
