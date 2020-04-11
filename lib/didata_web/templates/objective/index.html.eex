@@ -1,0 +1,29 @@
+<h1 class="title">Listing Objectives</h1>
+
+<div>
+  <%= link "New Objective", to: Routes.objective_path(@conn, :new), class: "button is-primary" %>
+</div>
+
+<div class="table-container">
+  <table class="table is-narrow is-striped is-hoverable is-fullwidth">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for objective <- @objectives do %>
+          <tr>
+            <td><%= objective.name %></td>
+
+            <td>
+              <span><%= link "Show", to: Routes.objective_path(@conn, :show, objective), class: "button is-small" %></span>
+              <span><%= link "Edit", to: Routes.objective_path(@conn, :edit, objective), class: "button is-primary is-small" %></span>
+              <span><%= link "Delete", to: Routes.objective_path(@conn, :delete, objective), method: :delete, data: [confirm: "Are you sure?"], class: "button is-danger is-small" %></span>
+            </td>
+          </tr>
+          <% end %>
+    </tbody>
+  </table>
+</div>

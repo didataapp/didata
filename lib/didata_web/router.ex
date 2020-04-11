@@ -9,18 +9,10 @@ defmodule DidataWeb.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
-
   scope "/", DidataWeb do
     pipe_through :browser
 
     get "/", PageController, :index
+    resources "/objectives", ObjectiveController
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", DidataWeb do
-  #   pipe_through :api
-  # end
 end
