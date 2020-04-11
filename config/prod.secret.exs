@@ -16,7 +16,7 @@ config :didata, Didata.Repo,
   database: "",
   ssl: true,
   url: database_url,
-  pool_size: 1
+  pool_size: 2
 
 secret_key_base =
   System.get_env("SECRET_KEY_BASE") ||
