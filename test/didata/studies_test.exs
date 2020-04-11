@@ -1,8 +1,7 @@
 defmodule Didata.StudiesTest do
   use Didata.DataCase
 
-  alias Didata.Studies
-  alias Didata.Repo
+  alias Didata.{Repo, Studies}
 
   describe "objectives" do
     alias Didata.Studies.Objective
