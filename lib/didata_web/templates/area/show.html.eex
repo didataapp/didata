@@ -1,0 +1,21 @@
+<h1 class="title">Show Area</h1>
+
+<ul>
+  <li>
+    <strong>Objective:</strong>
+    <%= @area.objective.name %>
+  </li>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @area.name %>
+  </li>
+
+  <li>
+    <strong>Number:</strong>
+    <%= @area.number %>
+  </li>
+</ul>
+
+<span><%= link "Edit", to: Routes.area_path(@conn, :edit, @area), class: "button is-primary" %></span>
+<span><%= link "Back", to: Routes.area_path(@conn, :index), class: "button" %></span>

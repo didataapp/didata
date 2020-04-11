@@ -2,8 +2,12 @@ defmodule Didata.Studies.Objective do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Didata.Studies.Area
+
   schema "objectives" do
     field :name, :string
+
+    has_many :areas, Area
 
     timestamps()
   end

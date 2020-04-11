@@ -1,0 +1,33 @@
+<h1 class="title">Listing Areas</h1>
+
+<div>
+  <%= link "New Area", to: Routes.area_path(@conn, :new), class: "button is-primary" %>
+</div>
+
+
+<div class="table-container">
+  <table class="table is-narrow is-striped is-hoverable is-fullwidth">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Number</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for area <- @areas do %>
+    <tr>
+      <td><%= area.name %></td>
+      <td><%= area.number %></td>
+
+      <td>
+        <span><%= link "Show", to: Routes.area_path(@conn, :show, area), class: "button is-small"  %></span>
+        <span><%= link "Edit", to: Routes.area_path(@conn, :edit, area), class: "button is-small is-primary"  %></span>
+        <span><%= link "Delete", to: Routes.area_path(@conn, :delete, area), method: :delete, data: [confirm: "Are you sure?"], class: "button is-small is-danger"  %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+</div>

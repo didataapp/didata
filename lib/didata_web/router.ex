@@ -14,5 +14,6 @@ defmodule DidataWeb.Router do
 
     get "/", PageController, :index
     resources "/objectives", ObjectiveController
+    resources "/areas", AreaController
   end
 end
