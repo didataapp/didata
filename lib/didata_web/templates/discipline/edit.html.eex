@@ -1,0 +1,5 @@
+<h1 class="title">Edit Discipline</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.discipline_path(@conn, :update, @discipline)) %>
+
+<span><%= link "Back", to: Routes.discipline_path(@conn, :index), class: "button" %></span>

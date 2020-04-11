@@ -38,7 +38,7 @@ defmodule Didata.MixProject do
       {:postgrex, ">= 0.0.0"},
       # dev/test
       {:credo, "~> 1.3", only: [:dev, :test], runtime: false},
-      {:ex_machina, "~> 2.4", only: :test},
+      {:ex_machina, "~> 2.4"},
       {:phoenix_live_reload, "~> 1.2", only: :dev}
     ]
   end

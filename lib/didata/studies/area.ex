@@ -3,13 +3,17 @@ defmodule Didata.Studies.Area do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Didata.Studies.Objective
+  alias Didata.Studies.{
+    Discipline,
+    Objective
+  }
 
   schema "areas" do
     field :name, :string
     field :number, :integer
 
     belongs_to :objective, Objective
+    has_many :disciplines, Discipline
 
     timestamps()
   end

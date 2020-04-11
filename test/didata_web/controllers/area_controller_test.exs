@@ -1,8 +1,6 @@
 defmodule DidataWeb.AreaControllerTest do
   use DidataWeb.ConnCase
 
-  alias Didata.Studies
-
   @create_attrs %{name: "some name", number: 42}
   @update_attrs %{name: "some updated name", number: 43}
   @invalid_attrs %{name: nil, number: nil, objective_id: nil}
@@ -23,7 +21,7 @@ defmodule DidataWeb.AreaControllerTest do
 
   describe "create area" do
     test "redirects to show when data is valid", %{conn: conn} do
-      {:ok, objective} = Studies.create_objective(%{name: "ENEM"})
+      objective = insert(:objective)
 
       conn =
         post(conn, Routes.area_path(conn, :create),
