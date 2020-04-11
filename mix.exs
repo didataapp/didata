@@ -17,7 +17,7 @@ defmodule Didata.MixProject do
   def application do
     [
       mod: {Didata.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:ex_machina, :logger, :runtime_tools]
     ]
   end
 
@@ -38,6 +38,7 @@ defmodule Didata.MixProject do
       {:postgrex, ">= 0.0.0"},
       # dev/test
       {:credo, "~> 1.3", only: [:dev, :test], runtime: false},
+      {:ex_machina, "~> 2.4", only: :test},
       {:phoenix_live_reload, "~> 1.2", only: :dev}
     ]
   end
