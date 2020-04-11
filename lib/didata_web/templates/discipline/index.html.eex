@@ -5,7 +5,7 @@
 </div>
 
 <div class="table-container">
-  <table>
+  <table class="table is-narrow is-striped is-hoverable is-fullwidth">
     <thead>
       <tr>
         <th>Name</th>

@@ -22,6 +22,6 @@
   </div>
 
   <div>
-    <%= submit "Save" %>
+    <%= submit "Save", class: "button is-primary" %>
   </div>
 <% end %>
