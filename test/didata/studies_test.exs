@@ -1,8 +1,7 @@
 defmodule Didata.StudiesTest do
   use Didata.DataCase
 
-  alias Didata.Studies
-  alias Didata.Repo
+  alias Didata.{Repo, Studies}
 
   describe "objectives" do
     alias Didata.Studies.Objective
@@ -96,7 +95,10 @@ defmodule Didata.StudiesTest do
 
     test "create_area/1 with valid data creates a area" do
       {:ok, objective} = Studies.create_objective(%{name: "ENEM"})
-      assert {:ok, %Area{} = area} = Studies.create_area(Map.merge(@valid_attrs, %{objective_id: objective.id}))
+
+      assert {:ok, %Area{} = area} =
+               Studies.create_area(Map.merge(@valid_attrs, %{objective_id: objective.id}))
+
       assert area.name == "some name"
       assert area.number == 42
     end

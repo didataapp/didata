@@ -15,6 +15,7 @@ defmodule DidataWeb.ChannelCase do
   this option is not recommended for other databases.
   """
 
+  alias Ecto.Adapters.SQL.Sandbox
   use ExUnit.CaseTemplate
 
   using do
@@ -28,10 +29,10 @@ defmodule DidataWeb.ChannelCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Didata.Repo)
+    :ok = Sandbox.checkout(Didata.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Didata.Repo, {:shared, self()})
+      Sandbox.mode(Didata.Repo, {:shared, self()})
     end
 
     :ok

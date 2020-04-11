@@ -1,4 +1,5 @@
 defmodule Didata.Studies.Objective do
+  @moduledoc false
   use Ecto.Schema
   import Ecto.Changeset
 
