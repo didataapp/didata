@@ -25,6 +25,7 @@ defmodule Didata.Factory do
     Area,
     Discipline,
     Objective,
+    Subtopic,
     Topic
   }
 
@@ -53,6 +54,13 @@ defmodule Didata.Factory do
     %Topic{
       name: "conhecimentos numericos",
       discipline: build(:discipline)
+    }
+  end
+
+  def subtopic_factory do
+    %Subtopic{
+      name: "conjuntos",
+      topic: build(:topic)
     }
   end
 end
