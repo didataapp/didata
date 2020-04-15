@@ -389,4 +389,100 @@ defmodule Didata.Studies do
   def change_topic(%Topic{} = topic) do
     Topic.changeset(topic, %{})
   end
+
+  alias Didata.Studies.Subtopic
+
+  @doc """
+  Returns the list of subtopics.
+
+  ## Examples
+
+      iex> list_subtopics()
+      [%Subtopic{}, ...]
+
+  """
+  def list_subtopics do
+    Repo.all(Subtopic)
+  end
+
+  @doc """
+  Gets a single subtopic.
+
+  Raises `Ecto.NoResultsError` if the Subtopic does not exist.
+
+  ## Examples
+
+      iex> get_subtopic!(123)
+      %Subtopic{}
+
+      iex> get_subtopic!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_subtopic!(id), do: Repo.get!(Subtopic, id) |> Repo.preload(:topic)
+
+  @doc """
+  Creates a subtopic.
+
+  ## Examples
+
+      iex> create_subtopic(%{field: value})
+      {:ok, %Subtopic{}}
+
+      iex> create_subtopic(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_subtopic(attrs \\ %{}) do
+    %Subtopic{}
+    |> Subtopic.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a subtopic.
+
+  ## Examples
+
+      iex> update_subtopic(subtopic, %{field: new_value})
+      {:ok, %Subtopic{}}
+
+      iex> update_subtopic(subtopic, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_subtopic(%Subtopic{} = subtopic, attrs) do
+    subtopic
+    |> Subtopic.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a subtopic.
+
+  ## Examples
+
+      iex> delete_subtopic(subtopic)
+      {:ok, %Subtopic{}}
+
+      iex> delete_subtopic(subtopic)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_subtopic(%Subtopic{} = subtopic) do
+    Repo.delete(subtopic)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking subtopic changes.
+
+  ## Examples
+
+      iex> change_subtopic(subtopic)
+      %Ecto.Changeset{source: %Subtopic{}}
+
+  """
+  def change_subtopic(%Subtopic{} = subtopic) do
+    Subtopic.changeset(subtopic, %{})
+  end
 end

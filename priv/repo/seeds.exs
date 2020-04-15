@@ -4,7 +4,8 @@ alias Didata.Studies.{
   Area,
   Discipline,
   Objective,
-  Topic
+  Topic,
+  Subtopic
 }
 
 enem =
@@ -26,9 +27,30 @@ matematica =
   }
   |> Repo.insert!()
 
-_topic_1 =
+numeros =
   %Topic{
     name: "conhecimentos numericos",
     discipline_id: matematica.id
+  }
+  |> Repo.insert!()
+
+_conjuntos =
+  %Subtopic{
+    name: "operações em conjuntos numéricos",
+    topic: numeros
+  }
+  |> Repo.insert!()
+
+_desigualdades =
+  %Subtopic{
+    name: "desigualdades",
+    topic: numeros
+  }
+  |> Repo.insert!()
+
+_contagem =
+  %Subtopic{
+    name: "princípios de contagem",
+    topic: numeros
   }
   |> Repo.insert!()

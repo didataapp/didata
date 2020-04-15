@@ -219,4 +219,58 @@ defmodule Didata.StudiesTest do
       assert %Ecto.Changeset{} = Studies.change_topic(topic)
     end
   end
+
+  describe "subtopics" do
+    alias Didata.Studies.Subtopic
+
+    @valid_attrs %{name: "some name"}
+    @update_attrs %{name: "some updated name"}
+    @invalid_attrs %{name: nil}
+
+    test "list_subtopics/0 returns all subtopics" do
+      subtopic = insert(:subtopic)
+      assert Enum.map(Studies.list_subtopics(), & &1.name) == [subtopic.name]
+    end
+
+    test "get_subtopic!/1 returns the subtopic with given id" do
+      subtopic = insert(:subtopic)
+      assert Studies.get_subtopic!(subtopic.id).name == subtopic.name
+    end
+
+    test "create_subtopic/1 with valid data creates a subtopic" do
+      topic = insert(:topic)
+
+      assert {:ok, %Subtopic{} = subtopic} =
+               Studies.create_subtopic(Map.merge(@valid_attrs, %{topic_id: topic.id}))
+
+      assert subtopic.name == "some name"
+    end
+
+    test "create_subtopic/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Studies.create_subtopic(@invalid_attrs)
+    end
+
+    test "update_subtopic/2 with valid data updates the subtopic" do
+      subtopic = insert(:subtopic)
+      assert {:ok, %Subtopic{} = subtopic} = Studies.update_subtopic(subtopic, @update_attrs)
+      assert subtopic.name == "some updated name"
+    end
+
+    test "update_subtopic/2 with invalid data returns error changeset" do
+      subtopic = insert(:subtopic)
+      assert {:error, %Ecto.Changeset{}} = Studies.update_subtopic(subtopic, @invalid_attrs)
+      assert subtopic.name == Studies.get_subtopic!(subtopic.id).name
+    end
+
+    test "delete_subtopic/1 deletes the subtopic" do
+      subtopic = insert(:subtopic)
+      assert {:ok, %Subtopic{}} = Studies.delete_subtopic(subtopic)
+      assert_raise Ecto.NoResultsError, fn -> Studies.get_subtopic!(subtopic.id) end
+    end
+
+    test "change_subtopic/1 returns a subtopic changeset" do
+      subtopic = insert(:subtopic)
+      assert %Ecto.Changeset{} = Studies.change_subtopic(subtopic)
+    end
+  end
 end

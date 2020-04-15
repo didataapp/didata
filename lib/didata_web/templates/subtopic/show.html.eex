@@ -1,0 +1,15 @@
+<h1 class="title">Show Subtopic</h1>
+
+<ul>
+  <li>
+    <strong>Topic:</strong>
+    <%= @subtopic.topic.name %>
+  </li>
+  <li>
+    <strong>Name:</strong>
+    <%= @subtopic.name %>
+  </li>
+</ul>
+
+<span><%= link "Edit", to: Routes.subtopic_path(@conn, :edit, @subtopic), class: "button is-primary" %></span>
+<span><%= link "Back", to: Routes.subtopic_path(@conn, :index), class: "button" %></span>

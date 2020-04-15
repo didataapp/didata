@@ -1,0 +1,5 @@
+<h1 class="title">New Subtopic</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.subtopic_path(@conn, :create)) %>
+
+<span><%= link "Back", to: Routes.subtopic_path(@conn, :index), class: "button" %></span>
