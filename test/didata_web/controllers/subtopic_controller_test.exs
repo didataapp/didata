@@ -1,8 +1,6 @@
 defmodule DidataWeb.SubtopicControllerTest do
   use DidataWeb.ConnCase
 
-  alias Didata.Studies
-
   @create_attrs %{name: "some name"}
   @update_attrs %{name: "some updated name"}
   @invalid_attrs %{name: nil}

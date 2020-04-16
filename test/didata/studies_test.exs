@@ -273,4 +273,62 @@ defmodule Didata.StudiesTest do
       assert %Ecto.Changeset{} = Studies.change_subtopic(subtopic)
     end
   end
+
+  describe "contents" do
+    alias Didata.Studies.Content
+
+    @valid_attrs %{name: "some name", type: "video", url: "some url"}
+    @update_attrs %{name: "some updated name", type: "text", url: "some updated url"}
+    @invalid_attrs %{name: nil, type: nil, url: nil}
+
+    test "list_contents/0 returns all contents" do
+      content = insert(:content)
+      assert Enum.map(Studies.list_contents(), & &1.name) == [content.name]
+    end
+
+    test "get_content!/1 returns the content with given id" do
+      content = insert(:content)
+      assert Studies.get_content!(content.id).name == content.name
+    end
+
+    test "create_content/1 with valid data creates a content" do
+      subtopic = insert(:subtopic)
+
+      assert {:ok, %Content{} = content} =
+               Studies.create_content(Map.merge(@valid_attrs, %{subtopic_id: subtopic.id}))
+
+      assert content.name == "some name"
+      assert content.type == "video"
+      assert content.url == "some url"
+    end
+
+    test "create_content/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Studies.create_content(@invalid_attrs)
+    end
+
+    test "update_content/2 with valid data updates the content" do
+      content = insert(:content)
+      assert {:ok, %Content{} = content} = Studies.update_content(content, @update_attrs)
+      assert content.name == "some updated name"
+      assert content.type == "text"
+      assert content.url == "some updated url"
+    end
+
+    test "update_content/2 with invalid data returns error changeset" do
+      content = insert(:content)
+      assert {:error, %Ecto.Changeset{}} = Studies.update_content(content, @invalid_attrs)
+      assert content.name == Studies.get_content!(content.id).name
+    end
+
+    test "delete_content/1 deletes the content" do
+      content = insert(:content)
+      assert {:ok, %Content{}} = Studies.delete_content(content)
+      assert_raise Ecto.NoResultsError, fn -> Studies.get_content!(content.id) end
+    end
+
+    test "change_content/1 returns a content changeset" do
+      content = insert(:content)
+      assert %Ecto.Changeset{} = Studies.change_content(content)
+    end
+  end
 end

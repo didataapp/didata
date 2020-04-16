@@ -23,6 +23,7 @@ defmodule Didata.Factory do
 
   alias Didata.Studies.{
     Area,
+    Content,
     Discipline,
     Objective,
     Subtopic,
@@ -61,6 +62,15 @@ defmodule Didata.Factory do
     %Subtopic{
       name: "conjuntos",
       topic: build(:topic)
+    }
+  end
+
+  def content_factory do
+    %Content{
+      type: "video",
+      name: "Conjuntos Numéricos: naturais, inteiros, racionais, irracionais e reais",
+      url: "https://www.youtube.com/watch?v=f3Inndu_T5Q",
+      subtopic: build(:subtopic)
     }
   end
 end

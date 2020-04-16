@@ -1,0 +1,23 @@
+<h1 class="title">Show Content</h1>
+
+<ul>
+  <li>
+    <strong>Subtopic:</strong>
+    <%= @content.subtopic.name %>
+  </li>
+  <li>
+    <strong>Type:</strong>
+    <%= @content.type %>
+  </li>
+  <li>
+    <strong>Name:</strong>
+    <%= @content.name %>
+  </li>
+  <li>
+    <strong>Url:</strong>
+    <%= @content.url %>
+  </li>
+</ul>
+
+<span><%= link "Edit", to: Routes.content_path(@conn, :edit, @content), class: "button is-primary" %></span>
+<span><%= link "Back", to: Routes.content_path(@conn, :index), class: "button" %></span>
