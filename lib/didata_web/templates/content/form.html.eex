@@ -1,0 +1,44 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="notification is-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= label f, :subtopic_id %>
+    <div class="control">
+      <%= select f, :subtopic_id,  Enum.reduce(@subtopics, %{}, fn s, acc -> Map.merge(acc, %{s.name => s.id}) end), class: "input" %>
+    </div>
+    <%= error_tag f, :subtopic_id %>
+  </div>
+
+  <div class="field">
+    <%= label f, :type %>
+    <div class="control">
+      <%= select f, :type,  @types, class: "input" %>
+    </div>
+    <%= error_tag f, :type %>
+  </div>
+
+
+  <div class="field">
+    <%= label f, :name %>
+    <div class="control">
+      <%= text_input f, :name, class: "input is-small" %>
+    </div>
+    <%= error_tag f, :name %>
+  </div>
+
+  <div class="field">
+    <%= label f, :url %>
+    <div class="control">
+      <%= text_input f, :url, class: "input is-small" %>
+    </div>
+    <%= error_tag f, :url %>
+  </div>
+
+  <div>
+    <%= submit "Save", class: "button is-primary" %>
+  </div>
+<% end %>
