@@ -15,7 +15,7 @@ config :didata, DidataWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "q1OOqjkgYGGvJG+r3YhNeALpcBMHUoAh0icQ/BmI6A7JJDUpuVyDxWvkarbQ0tse",
   render_errors: [view: DidataWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: Didata.PubSub, adapter: Phoenix.PubSub.PG2],
+  pubsub_server: Didata.PubSub,
   live_view: [signing_salt: "peZDyUFf"]
 
 # Configures Elixir's Logger
