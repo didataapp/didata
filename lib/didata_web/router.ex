@@ -1,5 +1,6 @@
 defmodule DidataWeb.Router do
   use DidataWeb, :router
+  import Phoenix.LiveDashboard.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -20,5 +21,12 @@ defmodule DidataWeb.Router do
     resources "/topics", TopicController
     resources "/subtopics", SubtopicController
     resources "/contents", ContentController
+  end
+
+  if Mix.env() == :dev do
+    scope "/" do
+      pipe_through :browser
+      live_dashboard "/dashboard", metrics: DidataWeb.Telemetry
+    end
   end
 end
