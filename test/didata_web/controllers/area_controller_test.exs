@@ -1,5 +1,5 @@
 defmodule DidataWeb.AreaControllerTest do
-  use DidataWeb.ConnCase
+  use DidataWeb.ConnCase, async: true
 
   @create_attrs %{name: "some name", number: 42}
   @update_attrs %{name: "some updated name", number: 43}
