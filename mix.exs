@@ -33,9 +33,12 @@ defmodule Didata.MixProject do
       {:phoenix, "~> 1.5.0-rc.0", override: true},
       {:phoenix_ecto, "~> 4.0"},
       {:phoenix_html, "~> 2.11"},
+      {:phoenix_live_dashboard, "~> 0.1"},
       {:phoenix_pubsub, "~> 2.0"},
       {:plug_cowboy, "~> 2.1"},
       {:postgrex, ">= 0.0.0"},
+      {:telemetry_poller, "~> 0.4"},
+      {:telemetry_metrics, "~> 0.4"},
       # dev/test
       {:credo, "~> 1.3", only: [:dev, :test], runtime: false},
       {:ex_machina, "~> 2.4"},
