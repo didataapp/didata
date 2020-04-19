@@ -26,3 +26,7 @@ config :didata, DidataWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+config :didata, Didata.Mailer, adapter: Bamboo.TestAdapter
+
+config :didata, sender_email: "sender@example.com"

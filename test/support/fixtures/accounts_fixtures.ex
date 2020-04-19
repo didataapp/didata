@@ -18,7 +18,6 @@ defmodule Didata.AccountsFixtures do
 
   def extract_user_token(fun) do
     {:ok, captured} = fun.(&"[TOKEN]#{&1}[TOKEN]")
-    [_, token, _] = String.split(captured.body, "[TOKEN]")
-    token
+    Enum.at(String.split(captured.body, "[TOKEN]"), 1)
   end
 end

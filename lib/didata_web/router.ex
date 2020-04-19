@@ -33,8 +33,12 @@ defmodule DidataWeb.Router do
     end
   end
 
-  ## Authentication routes
+  # Email viewer route
+  if Mix.env() == :dev do
+    forward "/sent_emails", Bamboo.SentEmailViewerPlug
+  end
 
+  # Authentication routes
   scope "/", DidataWeb do
     pipe_through [:browser, :redirect_if_user_is_authenticated]
 
