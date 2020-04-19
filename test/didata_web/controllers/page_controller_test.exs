@@ -1,5 +1,5 @@
 defmodule DidataWeb.PageControllerTest do
-  use DidataWeb.ConnCase
+  use DidataWeb.ConnCase, async: true
 
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")

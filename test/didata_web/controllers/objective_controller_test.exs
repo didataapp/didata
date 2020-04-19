@@ -1,5 +1,5 @@
 defmodule DidataWeb.ObjectiveControllerTest do
-  use DidataWeb.ConnCase
+  use DidataWeb.ConnCase, async: true
 
   @create_attrs %{name: "ENEM"}
   @update_attrs %{name: "ENEM 2021"}

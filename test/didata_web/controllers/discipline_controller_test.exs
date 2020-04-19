@@ -1,5 +1,5 @@
 defmodule DidataWeb.DisciplineControllerTest do
-  use DidataWeb.ConnCase
+  use DidataWeb.ConnCase, async: true
 
   @create_attrs %{name: "some name"}
   @update_attrs %{name: "some updated name"}

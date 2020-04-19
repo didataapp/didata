@@ -26,6 +26,7 @@ defmodule Didata.MixProject do
 
   defp deps do
     [
+      {:bcrypt_elixir, "~> 2.0"},
       {:distillery, "~> 2.1"},
       {:ecto_sql, "~> 3.1"},
       {:gettext, "~> 0.11"},
@@ -42,7 +43,8 @@ defmodule Didata.MixProject do
       # dev/test
       {:credo, "~> 1.3", only: [:dev, :test], runtime: false},
       {:ex_machina, "~> 2.4"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev}
+      {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:phx_gen_auth, "~> 0.1.0-rc.0", only: [:dev], runtime: false}
     ]
   end
 

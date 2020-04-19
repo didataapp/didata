@@ -9,6 +9,25 @@
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>">
   </head>
   <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="http://didataapp.github.io">
+          <img src="<%= Routes.static_path(@conn, "/images/didata-app-logo.png") %>" width="32" height="32">
+          Didata
+        </a>
+      </div>
+
+      <div id="navbarMenu" class="navbar-menu">
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <%= render "_user_menu.html", assigns %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
     <section class="section">
       <div class="container">
         <%= @inner_content %>
