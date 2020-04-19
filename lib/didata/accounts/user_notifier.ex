@@ -28,7 +28,7 @@ defmodule Didata.Accounts.UserNotifier do
       """
       <p>Olá #{user.email}.</p>
       <p>Você pode confirmar seu email visitando o endereço abaixo</p>
-      <p><a href=#{url}>#{url}</a></p>
+      <p><a href="#{url}">#{url}</a></p>
       <p>Se você não criou uma conta conosco, por favor ignore essa mensagem.</p>
       """
     )
@@ -44,8 +44,8 @@ defmodule Didata.Accounts.UserNotifier do
       """
       <p>Olá #{user.email}.
       <p>Você pode redefinir sua senha visitando o endereço abaixo</p>
-      <p>a href=#{url}>#{url}</a></p>
-      <p>e você não solicitou essa mudança, por favor ignore essa mensagem.</p>
+      <p><a href="#{url}">#{url}</a></p>
+      <p>Se você não solicitou essa mudança, por favor ignore essa mensagem.</p>
       """
     )
   end
@@ -60,7 +60,7 @@ defmodule Didata.Accounts.UserNotifier do
       """
       <p>Olá #{user.email}.</p>
       <p>Você pode mudar seu email visitando o endereço abaixo:</p>
-      <p><a href=#{url}>#{url}</a></p>
+      <p><a href="#{url}">#{url}</a></p>
       <p>Se você não solicitou essa mudança, por favor ignore essa mensagem.</p>
       """
     )
