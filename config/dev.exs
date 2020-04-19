@@ -74,3 +74,7 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :didata, Didata.Mailer, adapter: Bamboo.LocalAdapter
+
+config :didata, sender_email: "sender@example.com"

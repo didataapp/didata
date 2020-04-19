@@ -26,11 +26,12 @@ defmodule Didata.MixProject do
 
   defp deps do
     [
+      {:bamboo, "~> 1.4"},
       {:bcrypt_elixir, "~> 2.0"},
       {:distillery, "~> 2.1"},
       {:ecto_sql, "~> 3.1"},
       {:gettext, "~> 0.11"},
-      {:jason, "~> 1.0"},
+      {:jason, "~> 1.2", override: true},
       {:phoenix, "~> 1.5.0-rc.0", override: true},
       {:phoenix_ecto, "~> 4.0"},
       {:phoenix_html, "~> 2.11"},
