@@ -26,15 +26,6 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
-config :didata, Didata.Mailer,
-  adapter: Bamboo.SendGridAdapter,
-  api_key: {:system, "SENDGRID_API_KEY"},
-  hackney_opts: [
-    recv_timeout: :timer.minutes(1)
-  ]
-
-config :didata, sender_email: {:system, "DIDATA_SENDER_EMAIL"}
-
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

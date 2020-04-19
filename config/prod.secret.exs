@@ -32,6 +32,27 @@ config :didata, DidataWeb.Endpoint,
   ],
   secret_key_base: secret_key_base
 
+sendgrid_api_key =
+  System.get_env("SENDGRID_API_KEY") ||
+    raise """
+    environment variable SENDGRID_API_KEY is missing.
+    """
+
+config :didata, Didata.Mailer,
+  adapter: Bamboo.SendGridAdapter,
+  api_key: sendgrid_api_key,
+  hackney_opts: [
+    recv_timeout: :timer.minutes(1)
+  ]
+
+sendgrid_sender_email =
+  System.get_env("DIDATA_SENDER_EMAIL") ||
+    raise """
+    environment variable DIDATA_SENDER_EMAIL is missing.
+    """
+
+config :didata, sender_email: sendgrid_sender_email
+
 # ## Using releases (Elixir v1.9+)
 #
 # If you are doing OTP releases, you need to instruct Phoenix
