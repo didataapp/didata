@@ -25,8 +25,20 @@ defmodule Didata.Accounts.User do
   def registration_changeset(user, attrs) do
     user
     |> cast(attrs, [:email, :password])
+    |> maybe_downcase_email()
     |> validate_email()
     |> validate_password()
+  end
+
+  defp maybe_downcase_email(changeset) do
+    email = get_change(changeset, :email)
+
+    if email do
+      changeset
+      |> put_change(:email, String.downcase(email))
+    else
+      changeset
+    end
   end
 
   defp validate_email(changeset) do
@@ -68,6 +80,7 @@ defmodule Didata.Accounts.User do
   def email_changeset(user, attrs) do
     user
     |> cast(attrs, [:email])
+    |> maybe_downcase_email()
     |> validate_email()
     |> case do
       %{changes: %{email: _}} = changeset -> changeset
