@@ -1,4 +1,4 @@
-defmodule DidataWeb.ObjectiveController do
+defmodule DidataWeb.Admin.ObjectiveController do
   use DidataWeb, :controller
 
   alias Didata.Studies

@@ -56,6 +56,19 @@ defmodule DidataWeb.ConnCase do
   end
 
   @doc """
+  Setup helper that registers and logs in admin user.
+
+      setup :register_and_login_admin
+
+  It stores an updated connection and a registered admin in the
+  test context.
+  """
+  def register_and_login_admin(%{conn: conn}) do
+    user = Didata.AccountsFixtures.admin_fixture()
+    %{conn: login_user(conn, user), user: user}
+  end
+
+  @doc """
   Logs the given `user` into the `conn`.
 
   It returns an updated `conn`.

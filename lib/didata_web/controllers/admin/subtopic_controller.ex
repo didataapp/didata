@@ -1,4 +1,4 @@
-defmodule DidataWeb.SubtopicController do
+defmodule DidataWeb.Admin.SubtopicController do
   use DidataWeb, :controller
 
   alias Didata.Studies

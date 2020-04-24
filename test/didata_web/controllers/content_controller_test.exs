@@ -1,5 +1,9 @@
-defmodule DidataWeb.ContentControllerTest do
+defmodule DidataWeb.Admin.ContentControllerTest do
   use DidataWeb.ConnCase, async: true
+
+  defdelegate register_and_login_admin(conn), to: DidataWeb.ConnCase
+
+  setup :register_and_login_admin
 
   @create_attrs %{name: "some name", type: "video", url: "some url"}
   @update_attrs %{name: "some updated name", type: "text", url: "some updated url"}
