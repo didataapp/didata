@@ -4,61 +4,33 @@
 # remember to add this file to your .gitignore.
 use Mix.Config
 
-database_url =
-  System.get_env("DATABASE_URL") ||
-    raise """
-    environment variable DATABASE_URL is missing.
-    For example: ecto://USER:PASS@HOST/DATABASE
-    """
-
 config :didata, Didata.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "",
   ssl: true,
-  url: database_url,
+  url: required_env("DATABASE_URL"),
   pool_size: 2
-
-secret_key_base =
-  System.get_env("SECRET_KEY_BASE") ||
-    raise """
-    environment variable SECRET_KEY_BASE is missing.
-    You can generate one by calling: mix phx.gen.secret
-    """
 
 config :didata, DidataWeb.Endpoint,
   http: [
     port: String.to_integer(System.get_env("PORT") || "4000"),
     transport_options: [socket_opts: [:inet6]]
   ],
-  secret_key_base: secret_key_base
+  secret_key_base: required_env("SECRET_KEY_BASE")
 
-sendgrid_api_key =
-  System.get_env("SENDGRID_API_KEY") ||
-    raise """
-    environment variable SENDGRID_API_KEY is missing.
-    """
-
+# Mailer
 config :didata, Didata.Mailer,
   adapter: Bamboo.SendGridAdapter,
-  api_key: sendgrid_api_key,
+  api_key: required_env("SENDGRID_API_KEY"),
   hackney_opts: [
     recv_timeout: :timer.minutes(1)
   ]
 
-sendgrid_sender_email =
-  System.get_env("DIDATA_SENDER_EMAIL") ||
-    raise """
-    environment variable DIDATA_SENDER_EMAIL is missing.
-    """
+config :didata, sender_email: required_env("DIDATA_SENDER_EMAIL")
 
-config :didata, sender_email: sendgrid_sender_email
+# Admin
+config :didata, admin_email: required_env("DIDATA_ADMIN_EMAIL")
 
-# ## Using releases (Elixir v1.9+)
-#
-# If you are doing OTP releases, you need to instruct Phoenix
-# to start each relevant endpoint:
-#
-#     config :didata, DidataWeb.Endpoint, server: true
-#
-# Then you can assemble a release by calling `mix release`.
-# See `mix help release` for more information.
+def required_env(name) do
+  System.get_env(name) || raise "environment variable #{name} is missing."
+end

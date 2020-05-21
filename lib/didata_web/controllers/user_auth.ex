@@ -137,4 +137,16 @@ defmodule DidataWeb.UserAuth do
   defp maybe_store_return_to(conn), do: conn
 
   defp signed_in_path(_conn), do: "/"
+
+  def require_admin_user(conn, _opts) do
+    if Didata.Authorizer.can?(conn.assigns[:current_user], :admin, %{}) do
+      conn
+    else
+      conn
+      |> put_view(DidataWeb.ErrorView)
+      |> put_status(:forbidden)
+      |> render("403.html", conn.assigns)
+      |> halt()
+    end
+  end
 end

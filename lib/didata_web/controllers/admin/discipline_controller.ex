@@ -1,4 +1,4 @@
-defmodule DidataWeb.DisciplineController do
+defmodule DidataWeb.Admin.DisciplineController do
   use DidataWeb, :controller
 
   alias Didata.Studies

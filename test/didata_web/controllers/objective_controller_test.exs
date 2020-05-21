@@ -1,5 +1,9 @@
-defmodule DidataWeb.ObjectiveControllerTest do
+defmodule DidataWeb.Admin.ObjectiveControllerTest do
   use DidataWeb.ConnCase, async: true
+
+  defdelegate register_and_login_admin(conn), to: DidataWeb.ConnCase
+
+  setup :register_and_login_admin
 
   @create_attrs %{name: "ENEM"}
   @update_attrs %{name: "ENEM 2021"}

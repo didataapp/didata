@@ -54,3 +54,17 @@ _contagem =
     topic: numeros
   }
   |> Repo.insert!()
+
+{:ok, _admin} =
+  %{
+    email: "admin@email.com",
+    password: "admin42"
+  }
+  |> Didata.Accounts.register_user()
+
+{:ok, _student} =
+  %{
+    email: "estudante@email.com",
+    password: "estudante42"
+  }
+  |> Didata.Accounts.register_user()

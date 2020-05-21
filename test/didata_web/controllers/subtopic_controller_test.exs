@@ -1,5 +1,9 @@
-defmodule DidataWeb.SubtopicControllerTest do
+defmodule DidataWeb.Admin.SubtopicControllerTest do
   use DidataWeb.ConnCase, async: true
+
+  defdelegate register_and_login_admin(conn), to: DidataWeb.ConnCase
+
+  setup :register_and_login_admin
 
   @create_attrs %{name: "some name"}
   @update_attrs %{name: "some updated name"}

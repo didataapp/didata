@@ -17,6 +17,18 @@ defmodule DidataWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+  end
+
+  # Admin routes
+  pipeline :admins_only do
+    plug :require_authenticated_user
+    plug :require_admin_user
+  end
+
+  scope "/admin", DidataWeb.Admin do
+    pipe_through [:browser, :admins_only]
+
+    live_dashboard "/dashboard", metrics: DidataWeb.Telemetry
 
     resources "/objectives", ObjectiveController
     resources "/areas", AreaController
@@ -24,13 +36,6 @@ defmodule DidataWeb.Router do
     resources "/topics", TopicController
     resources "/subtopics", SubtopicController
     resources "/contents", ContentController
-  end
-
-  if Mix.env() == :dev do
-    scope "/" do
-      pipe_through :browser
-      live_dashboard "/dashboard", metrics: DidataWeb.Telemetry
-    end
   end
 
   # Email viewer route
