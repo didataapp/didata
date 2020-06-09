@@ -17,6 +17,7 @@ defmodule DidataWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    resources "/disciplines", DisciplineController, only: [:index]
   end
 
   # Admin routes
