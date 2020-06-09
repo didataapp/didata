@@ -20,7 +20,7 @@ defmodule DidataWeb.Admin.DisciplineController do
       {:ok, discipline} ->
         conn
         |> put_flash(:info, "Discipline created successfully.")
-        |> redirect(to: Routes.discipline_path(conn, :show, discipline))
+        |> redirect(to: Routes.admin_discipline_path(conn, :show, discipline))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         areas = Studies.list_areas()
@@ -47,7 +47,7 @@ defmodule DidataWeb.Admin.DisciplineController do
       {:ok, discipline} ->
         conn
         |> put_flash(:info, "Discipline updated successfully.")
-        |> redirect(to: Routes.discipline_path(conn, :show, discipline))
+        |> redirect(to: Routes.admin_discipline_path(conn, :show, discipline))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         areas = Studies.list_areas()
@@ -61,6 +61,6 @@ defmodule DidataWeb.Admin.DisciplineController do
 
     conn
     |> put_flash(:info, "Discipline deleted successfully.")
-    |> redirect(to: Routes.discipline_path(conn, :index))
+    |> redirect(to: Routes.admin_discipline_path(conn, :index))
   end
 end

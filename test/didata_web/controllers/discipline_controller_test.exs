@@ -11,14 +11,14 @@ defmodule DidataWeb.Admin.DisciplineControllerTest do
 
   describe "index" do
     test "lists all disciplines", %{conn: conn} do
-      conn = get(conn, Routes.discipline_path(conn, :index))
+      conn = get(conn, Routes.admin_discipline_path(conn, :index))
       assert html_response(conn, 200) =~ "Listing Disciplines"
     end
   end
 
   describe "new discipline" do
     test "renders form", %{conn: conn} do
-      conn = get(conn, Routes.discipline_path(conn, :new))
+      conn = get(conn, Routes.admin_discipline_path(conn, :new))
       assert html_response(conn, 200) =~ "New Discipline"
     end
   end
@@ -28,19 +28,19 @@ defmodule DidataWeb.Admin.DisciplineControllerTest do
       area = insert(:area)
 
       conn =
-        post(conn, Routes.discipline_path(conn, :create),
+        post(conn, Routes.admin_discipline_path(conn, :create),
           discipline: Map.merge(@create_attrs, %{area_id: area.id})
         )
 
       assert %{id: id} = redirected_params(conn)
-      assert redirected_to(conn) == Routes.discipline_path(conn, :show, id)
+      assert redirected_to(conn) == Routes.admin_discipline_path(conn, :show, id)
 
-      conn = get(conn, Routes.discipline_path(conn, :show, id))
+      conn = get(conn, Routes.admin_discipline_path(conn, :show, id))
       assert html_response(conn, 200) =~ "Show Discipline"
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, Routes.discipline_path(conn, :create), discipline: @invalid_attrs)
+      conn = post(conn, Routes.admin_discipline_path(conn, :create), discipline: @invalid_attrs)
       assert html_response(conn, 200) =~ "New Discipline"
     end
   end
@@ -49,7 +49,7 @@ defmodule DidataWeb.Admin.DisciplineControllerTest do
     setup [:create_discipline]
 
     test "renders form for editing chosen discipline", %{conn: conn, discipline: discipline} do
-      conn = get(conn, Routes.discipline_path(conn, :edit, discipline))
+      conn = get(conn, Routes.admin_discipline_path(conn, :edit, discipline))
       assert html_response(conn, 200) =~ "Edit Discipline"
     end
   end
@@ -59,17 +59,21 @@ defmodule DidataWeb.Admin.DisciplineControllerTest do
 
     test "redirects when data is valid", %{conn: conn, discipline: discipline} do
       conn =
-        put(conn, Routes.discipline_path(conn, :update, discipline), discipline: @update_attrs)
+        put(conn, Routes.admin_discipline_path(conn, :update, discipline),
+          discipline: @update_attrs
+        )
 
-      assert redirected_to(conn) == Routes.discipline_path(conn, :show, discipline)
+      assert redirected_to(conn) == Routes.admin_discipline_path(conn, :show, discipline)
 
-      conn = get(conn, Routes.discipline_path(conn, :show, discipline))
+      conn = get(conn, Routes.admin_discipline_path(conn, :show, discipline))
       assert html_response(conn, 200) =~ "some updated name"
     end
 
     test "renders errors when data is invalid", %{conn: conn, discipline: discipline} do
       conn =
-        put(conn, Routes.discipline_path(conn, :update, discipline), discipline: @invalid_attrs)
+        put(conn, Routes.admin_discipline_path(conn, :update, discipline),
+          discipline: @invalid_attrs
+        )
 
       assert html_response(conn, 200) =~ "Edit Discipline"
     end
@@ -79,11 +83,11 @@ defmodule DidataWeb.Admin.DisciplineControllerTest do
     setup [:create_discipline]
 
     test "deletes chosen discipline", %{conn: conn, discipline: discipline} do
-      conn = delete(conn, Routes.discipline_path(conn, :delete, discipline))
-      assert redirected_to(conn) == Routes.discipline_path(conn, :index)
+      conn = delete(conn, Routes.admin_discipline_path(conn, :delete, discipline))
+      assert redirected_to(conn) == Routes.admin_discipline_path(conn, :index)
 
       assert_error_sent 404, fn ->
-        get(conn, Routes.discipline_path(conn, :show, discipline))
+        get(conn, Routes.admin_discipline_path(conn, :show, discipline))
       end
     end
   end

@@ -1,7 +1,7 @@
 <h1 class="title">Listing Subtopics</h1>
 
 <div>
-  <%= link "New Subtopic", to: Routes.subtopic_path(@conn, :new), class: "button is-primary" %>
+  <%= link "New Subtopic", to: Routes.admin_subtopic_path(@conn, :new), class: "button is-primary" %>
 </div>
 
 <div class="table-container">
@@ -17,9 +17,9 @@
         <tr>
           <td><%= subtopic.name %></td>
           <td>
-            <span><%= link "Show", to: Routes.subtopic_path(@conn, :show, subtopic), class: "button is-small" %></span>
-            <span><%= link "Edit", to: Routes.subtopic_path(@conn, :edit, subtopic), class: "button is-small is-primary" %></span>
-            <span><%= link "Delete", to: Routes.subtopic_path(@conn, :delete, subtopic), method: :delete, data: [confirm: "Are you sure?"], class: "button is-small is-danger" %></span>
+            <span><%= link "Show", to: Routes.admin_subtopic_path(@conn, :show, subtopic), class: "button is-small" %></span>
+            <span><%= link "Edit", to: Routes.admin_subtopic_path(@conn, :edit, subtopic), class: "button is-small is-primary" %></span>
+            <span><%= link "Delete", to: Routes.admin_subtopic_path(@conn, :delete, subtopic), method: :delete, data: [confirm: "Are you sure?"], class: "button is-small is-danger" %></span>
           </td>
         </tr>
       <% end %>

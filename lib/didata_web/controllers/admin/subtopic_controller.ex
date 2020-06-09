@@ -20,7 +20,7 @@ defmodule DidataWeb.Admin.SubtopicController do
       {:ok, subtopic} ->
         conn
         |> put_flash(:info, "Subtopic created successfully.")
-        |> redirect(to: Routes.subtopic_path(conn, :show, subtopic))
+        |> redirect(to: Routes.admin_subtopic_path(conn, :show, subtopic))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         topics = Studies.list_topics()
@@ -47,7 +47,7 @@ defmodule DidataWeb.Admin.SubtopicController do
       {:ok, subtopic} ->
         conn
         |> put_flash(:info, "Subtopic updated successfully.")
-        |> redirect(to: Routes.subtopic_path(conn, :show, subtopic))
+        |> redirect(to: Routes.admin_subtopic_path(conn, :show, subtopic))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         topics = Studies.list_topics()
@@ -61,6 +61,6 @@ defmodule DidataWeb.Admin.SubtopicController do
 
     conn
     |> put_flash(:info, "Subtopic deleted successfully.")
-    |> redirect(to: Routes.subtopic_path(conn, :index))
+    |> redirect(to: Routes.admin_subtopic_path(conn, :index))
   end
 end

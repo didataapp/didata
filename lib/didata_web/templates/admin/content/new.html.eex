@@ -1,5 +1,5 @@
 <h1 class="title">New Content</h1>
 
-<%= render "form.html", Map.put(assigns, :action, Routes.content_path(@conn, :create)) %>
+<%= render "form.html", Map.put(assigns, :action, Routes.admin_content_path(@conn, :create)) %>
 
-<span><%= link "Back", to: Routes.content_path(@conn, :index), class: "button" %></span>
+<span><%= link "Back", to: Routes.admin_content_path(@conn, :index), class: "button" %></span>

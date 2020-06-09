@@ -11,5 +11,5 @@
   </li>
 </ul>
 
-<span><%= link "Edit", to: Routes.subtopic_path(@conn, :edit, @subtopic), class: "button is-primary" %></span>
-<span><%= link "Back", to: Routes.subtopic_path(@conn, :index), class: "button" %></span>
+<span><%= link "Edit", to: Routes.admin_subtopic_path(@conn, :edit, @subtopic), class: "button is-primary" %></span>
+<span><%= link "Back", to: Routes.admin_subtopic_path(@conn, :index), class: "button" %></span>

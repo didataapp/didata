@@ -11,14 +11,14 @@ defmodule DidataWeb.Admin.AreaControllerTest do
 
   describe "index" do
     test "lists all areas", %{conn: conn} do
-      conn = get(conn, Routes.area_path(conn, :index))
+      conn = get(conn, Routes.admin_area_path(conn, :index))
       assert html_response(conn, 200) =~ "Listing Areas"
     end
   end
 
   describe "new area" do
     test "renders form", %{conn: conn} do
-      conn = get(conn, Routes.area_path(conn, :new))
+      conn = get(conn, Routes.admin_area_path(conn, :new))
       assert html_response(conn, 200) =~ "New Area"
     end
   end
@@ -28,19 +28,19 @@ defmodule DidataWeb.Admin.AreaControllerTest do
       objective = insert(:objective)
 
       conn =
-        post(conn, Routes.area_path(conn, :create),
+        post(conn, Routes.admin_area_path(conn, :create),
           area: Map.merge(@create_attrs, %{objective_id: objective.id})
         )
 
       assert %{id: id} = redirected_params(conn)
-      assert redirected_to(conn) == Routes.area_path(conn, :show, id)
+      assert redirected_to(conn) == Routes.admin_area_path(conn, :show, id)
 
-      conn = get(conn, Routes.area_path(conn, :show, id))
+      conn = get(conn, Routes.admin_area_path(conn, :show, id))
       assert html_response(conn, 200) =~ "Show Area"
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, Routes.area_path(conn, :create), area: @invalid_attrs)
+      conn = post(conn, Routes.admin_area_path(conn, :create), area: @invalid_attrs)
       assert html_response(conn, 200) =~ "New Area"
     end
   end
@@ -49,7 +49,7 @@ defmodule DidataWeb.Admin.AreaControllerTest do
     setup [:create_area]
 
     test "renders form for editing chosen area", %{conn: conn, area: area} do
-      conn = get(conn, Routes.area_path(conn, :edit, area))
+      conn = get(conn, Routes.admin_area_path(conn, :edit, area))
       assert html_response(conn, 200) =~ "Edit Area"
     end
   end
@@ -58,15 +58,15 @@ defmodule DidataWeb.Admin.AreaControllerTest do
     setup [:create_area]
 
     test "redirects when data is valid", %{conn: conn, area: area} do
-      conn = put(conn, Routes.area_path(conn, :update, area), area: @update_attrs)
-      assert redirected_to(conn) == Routes.area_path(conn, :show, area)
+      conn = put(conn, Routes.admin_area_path(conn, :update, area), area: @update_attrs)
+      assert redirected_to(conn) == Routes.admin_area_path(conn, :show, area)
 
-      conn = get(conn, Routes.area_path(conn, :show, area))
+      conn = get(conn, Routes.admin_area_path(conn, :show, area))
       assert html_response(conn, 200) =~ "some updated name"
     end
 
     test "renders errors when data is invalid", %{conn: conn, area: area} do
-      conn = put(conn, Routes.area_path(conn, :update, area), area: @invalid_attrs)
+      conn = put(conn, Routes.admin_area_path(conn, :update, area), area: @invalid_attrs)
       assert html_response(conn, 200) =~ "Edit Area"
     end
   end
@@ -75,11 +75,11 @@ defmodule DidataWeb.Admin.AreaControllerTest do
     setup [:create_area]
 
     test "deletes chosen area", %{conn: conn, area: area} do
-      conn = delete(conn, Routes.area_path(conn, :delete, area))
-      assert redirected_to(conn) == Routes.area_path(conn, :index)
+      conn = delete(conn, Routes.admin_area_path(conn, :delete, area))
+      assert redirected_to(conn) == Routes.admin_area_path(conn, :index)
 
       assert_error_sent 404, fn ->
-        get(conn, Routes.area_path(conn, :show, area))
+        get(conn, Routes.admin_area_path(conn, :show, area))
       end
     end
   end

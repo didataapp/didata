@@ -11,14 +11,14 @@ defmodule DidataWeb.Admin.SubtopicControllerTest do
 
   describe "index" do
     test "lists all subtopics", %{conn: conn} do
-      conn = get(conn, Routes.subtopic_path(conn, :index))
+      conn = get(conn, Routes.admin_subtopic_path(conn, :index))
       assert html_response(conn, 200) =~ "Listing Subtopics"
     end
   end
 
   describe "new subtopic" do
     test "renders form", %{conn: conn} do
-      conn = get(conn, Routes.subtopic_path(conn, :new))
+      conn = get(conn, Routes.admin_subtopic_path(conn, :new))
       assert html_response(conn, 200) =~ "New Subtopic"
     end
   end
@@ -28,19 +28,19 @@ defmodule DidataWeb.Admin.SubtopicControllerTest do
       topic = insert(:topic)
 
       conn =
-        post(conn, Routes.subtopic_path(conn, :create),
+        post(conn, Routes.admin_subtopic_path(conn, :create),
           subtopic: Map.merge(@create_attrs, %{topic_id: topic.id})
         )
 
       assert %{id: id} = redirected_params(conn)
-      assert redirected_to(conn) == Routes.subtopic_path(conn, :show, id)
+      assert redirected_to(conn) == Routes.admin_subtopic_path(conn, :show, id)
 
-      conn = get(conn, Routes.subtopic_path(conn, :show, id))
+      conn = get(conn, Routes.admin_subtopic_path(conn, :show, id))
       assert html_response(conn, 200) =~ "Show Subtopic"
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, Routes.subtopic_path(conn, :create), subtopic: @invalid_attrs)
+      conn = post(conn, Routes.admin_subtopic_path(conn, :create), subtopic: @invalid_attrs)
       assert html_response(conn, 200) =~ "New Subtopic"
     end
   end
@@ -49,7 +49,7 @@ defmodule DidataWeb.Admin.SubtopicControllerTest do
     setup [:create_subtopic]
 
     test "renders form for editing chosen subtopic", %{conn: conn, subtopic: subtopic} do
-      conn = get(conn, Routes.subtopic_path(conn, :edit, subtopic))
+      conn = get(conn, Routes.admin_subtopic_path(conn, :edit, subtopic))
       assert html_response(conn, 200) =~ "Edit Subtopic"
     end
   end
@@ -58,15 +58,19 @@ defmodule DidataWeb.Admin.SubtopicControllerTest do
     setup [:create_subtopic]
 
     test "redirects when data is valid", %{conn: conn, subtopic: subtopic} do
-      conn = put(conn, Routes.subtopic_path(conn, :update, subtopic), subtopic: @update_attrs)
-      assert redirected_to(conn) == Routes.subtopic_path(conn, :show, subtopic)
+      conn =
+        put(conn, Routes.admin_subtopic_path(conn, :update, subtopic), subtopic: @update_attrs)
 
-      conn = get(conn, Routes.subtopic_path(conn, :show, subtopic))
+      assert redirected_to(conn) == Routes.admin_subtopic_path(conn, :show, subtopic)
+
+      conn = get(conn, Routes.admin_subtopic_path(conn, :show, subtopic))
       assert html_response(conn, 200) =~ "some updated name"
     end
 
     test "renders errors when data is invalid", %{conn: conn, subtopic: subtopic} do
-      conn = put(conn, Routes.subtopic_path(conn, :update, subtopic), subtopic: @invalid_attrs)
+      conn =
+        put(conn, Routes.admin_subtopic_path(conn, :update, subtopic), subtopic: @invalid_attrs)
+
       assert html_response(conn, 200) =~ "Edit Subtopic"
     end
   end
@@ -75,11 +79,11 @@ defmodule DidataWeb.Admin.SubtopicControllerTest do
     setup [:create_subtopic]
 
     test "deletes chosen subtopic", %{conn: conn, subtopic: subtopic} do
-      conn = delete(conn, Routes.subtopic_path(conn, :delete, subtopic))
-      assert redirected_to(conn) == Routes.subtopic_path(conn, :index)
+      conn = delete(conn, Routes.admin_subtopic_path(conn, :delete, subtopic))
+      assert redirected_to(conn) == Routes.admin_subtopic_path(conn, :index)
 
       assert_error_sent 404, fn ->
-        get(conn, Routes.subtopic_path(conn, :show, subtopic))
+        get(conn, Routes.admin_subtopic_path(conn, :show, subtopic))
       end
     end
   end

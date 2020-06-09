@@ -7,5 +7,5 @@
   </li>
 </ul>
 
-<span><%= link "Edit", to: Routes.objective_path(@conn, :edit, @objective), class: "button is-primary" %></span>
-<span><%= link "Back", to: Routes.objective_path(@conn, :index), class: "button" %></span>
+<span><%= link "Edit", to: Routes.admin_objective_path(@conn, :edit, @objective), class: "button is-primary" %></span>
+<span><%= link "Back", to: Routes.admin_objective_path(@conn, :index), class: "button" %></span>

@@ -17,5 +17,5 @@
   </li>
 </ul>
 
-<span><%= link "Edit", to: Routes.area_path(@conn, :edit, @area), class: "button is-primary" %></span>
-<span><%= link "Back", to: Routes.area_path(@conn, :index), class: "button" %></span>
+<span><%= link "Edit", to: Routes.admin_area_path(@conn, :edit, @area), class: "button is-primary" %></span>
+<span><%= link "Back", to: Routes.admin_area_path(@conn, :index), class: "button" %></span>

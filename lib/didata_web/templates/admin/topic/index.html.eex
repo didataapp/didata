@@ -1,7 +1,7 @@
 <h1 class="title">Listing Topics</h1>
 
 <div>
-  <%= link "New Topic", to: Routes.topic_path(@conn, :new), class: "button is-primary" %>
+  <%= link "New Topic", to: Routes.admin_topic_path(@conn, :new), class: "button is-primary" %>
 </div>
 
 <div class="table-container">
@@ -17,9 +17,9 @@
         <tr>
           <td><%= topic.name %></td>
           <td>
-            <span><%= link "Show", to: Routes.topic_path(@conn, :show, topic), class: "button is-small" %></span>
-            <span><%= link "Edit", to: Routes.topic_path(@conn, :edit, topic), class: "button is-small is-primary" %></span>
-            <span><%= link "Delete", to: Routes.topic_path(@conn, :delete, topic), method: :delete, data: [confirm: "Are you sure?"], class: "button is-small is-danger" %></span>
+            <span><%= link "Show", to: Routes.admin_topic_path(@conn, :show, topic), class: "button is-small" %></span>
+            <span><%= link "Edit", to: Routes.admin_topic_path(@conn, :edit, topic), class: "button is-small is-primary" %></span>
+            <span><%= link "Delete", to: Routes.admin_topic_path(@conn, :delete, topic), method: :delete, data: [confirm: "Are you sure?"], class: "button is-small is-danger" %></span>
           </td>
         </tr>
       <% end %>

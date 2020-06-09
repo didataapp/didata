@@ -14,5 +14,5 @@
 
 </ul>
 
-<span><%= link "Edit", to: Routes.discipline_path(@conn, :edit, @discipline), class: "button is-primary" %></span>
-<span><%= link "Back", to: Routes.discipline_path(@conn, :index), class: "button" %></span>
+<span><%= link "Edit", to: Routes.admin_discipline_path(@conn, :edit, @discipline), class: "button is-primary" %></span>
+<span><%= link "Back", to: Routes.admin_discipline_path(@conn, :index), class: "button" %></span>

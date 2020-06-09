@@ -20,7 +20,7 @@ defmodule DidataWeb.Admin.AreaController do
       {:ok, area} ->
         conn
         |> put_flash(:info, "Area created successfully.")
-        |> redirect(to: Routes.area_path(conn, :show, area))
+        |> redirect(to: Routes.admin_area_path(conn, :show, area))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         objectives = Studies.list_objectives()
@@ -48,7 +48,7 @@ defmodule DidataWeb.Admin.AreaController do
       {:ok, area} ->
         conn
         |> put_flash(:info, "Area updated successfully.")
-        |> redirect(to: Routes.area_path(conn, :show, area))
+        |> redirect(to: Routes.admin_area_path(conn, :show, area))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         objectives = Studies.list_objectives()
@@ -62,6 +62,6 @@ defmodule DidataWeb.Admin.AreaController do
 
     conn
     |> put_flash(:info, "Area deleted successfully.")
-    |> redirect(to: Routes.area_path(conn, :index))
+    |> redirect(to: Routes.admin_area_path(conn, :index))
   end
 end

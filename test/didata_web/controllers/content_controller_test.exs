@@ -11,14 +11,14 @@ defmodule DidataWeb.Admin.ContentControllerTest do
 
   describe "index" do
     test "lists all contents", %{conn: conn} do
-      conn = get(conn, Routes.content_path(conn, :index))
+      conn = get(conn, Routes.admin_content_path(conn, :index))
       assert html_response(conn, 200) =~ "Listing Contents"
     end
   end
 
   describe "new content" do
     test "renders form", %{conn: conn} do
-      conn = get(conn, Routes.content_path(conn, :new))
+      conn = get(conn, Routes.admin_content_path(conn, :new))
       assert html_response(conn, 200) =~ "New Content"
     end
   end
@@ -28,19 +28,19 @@ defmodule DidataWeb.Admin.ContentControllerTest do
       subtopic = insert(:subtopic)
 
       conn =
-        post(conn, Routes.content_path(conn, :create),
+        post(conn, Routes.admin_content_path(conn, :create),
           content: Map.merge(@create_attrs, %{subtopic_id: subtopic.id})
         )
 
       assert %{id: id} = redirected_params(conn)
-      assert redirected_to(conn) == Routes.content_path(conn, :show, id)
+      assert redirected_to(conn) == Routes.admin_content_path(conn, :show, id)
 
-      conn = get(conn, Routes.content_path(conn, :show, id))
+      conn = get(conn, Routes.admin_content_path(conn, :show, id))
       assert html_response(conn, 200) =~ "Show Content"
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
-      conn = post(conn, Routes.content_path(conn, :create), content: @invalid_attrs)
+      conn = post(conn, Routes.admin_content_path(conn, :create), content: @invalid_attrs)
       assert html_response(conn, 200) =~ "New Content"
     end
   end
@@ -49,7 +49,7 @@ defmodule DidataWeb.Admin.ContentControllerTest do
     setup [:create_content]
 
     test "renders form for editing chosen content", %{conn: conn, content: content} do
-      conn = get(conn, Routes.content_path(conn, :edit, content))
+      conn = get(conn, Routes.admin_content_path(conn, :edit, content))
       assert html_response(conn, 200) =~ "Edit Content"
     end
   end
@@ -58,15 +58,15 @@ defmodule DidataWeb.Admin.ContentControllerTest do
     setup [:create_content]
 
     test "redirects when data is valid", %{conn: conn, content: content} do
-      conn = put(conn, Routes.content_path(conn, :update, content), content: @update_attrs)
-      assert redirected_to(conn) == Routes.content_path(conn, :show, content)
+      conn = put(conn, Routes.admin_content_path(conn, :update, content), content: @update_attrs)
+      assert redirected_to(conn) == Routes.admin_content_path(conn, :show, content)
 
-      conn = get(conn, Routes.content_path(conn, :show, content))
+      conn = get(conn, Routes.admin_content_path(conn, :show, content))
       assert html_response(conn, 200) =~ "some updated name"
     end
 
     test "renders errors when data is invalid", %{conn: conn, content: content} do
-      conn = put(conn, Routes.content_path(conn, :update, content), content: @invalid_attrs)
+      conn = put(conn, Routes.admin_content_path(conn, :update, content), content: @invalid_attrs)
       assert html_response(conn, 200) =~ "Edit Content"
     end
   end
@@ -75,11 +75,11 @@ defmodule DidataWeb.Admin.ContentControllerTest do
     setup [:create_content]
 
     test "deletes chosen content", %{conn: conn, content: content} do
-      conn = delete(conn, Routes.content_path(conn, :delete, content))
-      assert redirected_to(conn) == Routes.content_path(conn, :index)
+      conn = delete(conn, Routes.admin_content_path(conn, :delete, content))
+      assert redirected_to(conn) == Routes.admin_content_path(conn, :index)
 
       assert_error_sent 404, fn ->
-        get(conn, Routes.content_path(conn, :show, content))
+        get(conn, Routes.admin_content_path(conn, :show, content))
       end
     end
   end

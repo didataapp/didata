@@ -26,7 +26,7 @@ defmodule DidataWeb.Router do
     plug :require_admin_user
   end
 
-  scope "/admin", DidataWeb.Admin do
+  scope "/admin", DidataWeb.Admin, as: :admin do
     pipe_through [:browser, :admins_only]
 
     live_dashboard "/dashboard", metrics: DidataWeb.Telemetry

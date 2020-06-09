@@ -19,7 +19,7 @@ defmodule DidataWeb.Admin.ObjectiveController do
       {:ok, objective} ->
         conn
         |> put_flash(:info, "Objective created successfully.")
-        |> redirect(to: Routes.objective_path(conn, :show, objective))
+        |> redirect(to: Routes.admin_objective_path(conn, :show, objective))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -44,7 +44,7 @@ defmodule DidataWeb.Admin.ObjectiveController do
       {:ok, objective} ->
         conn
         |> put_flash(:info, "Objective updated successfully.")
-        |> redirect(to: Routes.objective_path(conn, :show, objective))
+        |> redirect(to: Routes.admin_objective_path(conn, :show, objective))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", objective: objective, changeset: changeset)
@@ -57,6 +57,6 @@ defmodule DidataWeb.Admin.ObjectiveController do
 
     conn
     |> put_flash(:info, "Objective deleted successfully.")
-    |> redirect(to: Routes.objective_path(conn, :index))
+    |> redirect(to: Routes.admin_objective_path(conn, :index))
   end
 end

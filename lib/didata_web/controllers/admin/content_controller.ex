@@ -25,7 +25,7 @@ defmodule DidataWeb.Admin.ContentController do
       {:ok, content} ->
         conn
         |> put_flash(:info, "Content created successfully.")
-        |> redirect(to: Routes.content_path(conn, :show, content))
+        |> redirect(to: Routes.admin_content_path(conn, :show, content))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         subtopics = Studies.list_subtopics()
@@ -63,7 +63,7 @@ defmodule DidataWeb.Admin.ContentController do
       {:ok, content} ->
         conn
         |> put_flash(:info, "Content updated successfully.")
-        |> redirect(to: Routes.content_path(conn, :show, content))
+        |> redirect(to: Routes.admin_content_path(conn, :show, content))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         subtopics = Studies.list_subtopics()
@@ -83,6 +83,6 @@ defmodule DidataWeb.Admin.ContentController do
 
     conn
     |> put_flash(:info, "Content deleted successfully.")
-    |> redirect(to: Routes.content_path(conn, :index))
+    |> redirect(to: Routes.admin_content_path(conn, :index))
   end
 end

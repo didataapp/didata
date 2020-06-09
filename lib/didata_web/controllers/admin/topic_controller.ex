@@ -20,7 +20,7 @@ defmodule DidataWeb.Admin.TopicController do
       {:ok, topic} ->
         conn
         |> put_flash(:info, "Topic created successfully.")
-        |> redirect(to: Routes.topic_path(conn, :show, topic))
+        |> redirect(to: Routes.admin_topic_path(conn, :show, topic))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         disciplines = Studies.list_disciplines()
@@ -47,7 +47,7 @@ defmodule DidataWeb.Admin.TopicController do
       {:ok, topic} ->
         conn
         |> put_flash(:info, "Topic updated successfully.")
-        |> redirect(to: Routes.topic_path(conn, :show, topic))
+        |> redirect(to: Routes.admin_topic_path(conn, :show, topic))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         disciplines = Studies.list_disciplines()
@@ -61,6 +61,6 @@ defmodule DidataWeb.Admin.TopicController do
 
     conn
     |> put_flash(:info, "Topic deleted successfully.")
-    |> redirect(to: Routes.topic_path(conn, :index))
+    |> redirect(to: Routes.admin_topic_path(conn, :index))
   end
 end
