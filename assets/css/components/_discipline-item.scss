@@ -1,0 +1,49 @@
+.discipline-item
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  height: 160px
+  flex-basis: calc( 100% / 2 )
+  @include respond-from(small)
+    flex-basis: calc( 100% / 3 )
+  @include respond-from(medium)
+    flex-basis: calc( 100% / 4 )
+  @include respond-from(large)
+    flex-basis: calc( 100% / 7 )
+  & > .name
+    font-weight: 600
+    color: $color-neutral-900
+    text-align: center
+    margin-top: 12px
+  & > .icon
+    width: 88px
+    height: 88px
+    position: relative
+    & > .chart,
+    & > .image
+      +center-align
+
+    & > .image
+      +center-align
+      width: 64px
+      height: 64px
+
+    & > .chart
+      --size: 88px
+      --bord: 6px
+      width: var(--size)
+      height: var(--size)
+      border-radius: 50%
+      background-image: conic-gradient($color-primary-600 var(--progress), rgba($color-primary-400, 0.24) var(--progress))
+      position: relative
+      &::after
+        content: ""
+        position: absolute
+        left: 50%
+        top: 50%
+        transform: translate(-50%, -50%)
+        width: calc(100% - ( var(--bord) * 2) )
+        height: calc(100% - ( var(--bord) * 2) )
+        background: white
+        border-radius: inherit

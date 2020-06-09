@@ -3,3 +3,20 @@ $fa-font-path : "~@fortawesome/fontawesome-free/webfonts";
 @import "./node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
 
 @import "bulma";
+
+// Ambience
+@import './ambience/colors'
+@import './ambience/typography'
+@import './ambience/sizes'
+
+// Base
+@import './base/reset'
+@import './base/reusables'
+@import './base/responsive'
+@import './base/unclassed'
+
+// Components
+@import './components/app-header'
+@import './components/app-footer'
+@import './components/discipline-list'
+@import './components/discipline-item'

@@ -1,0 +1,26 @@
+.app-header
+  height: $size-header
+  border-bottom: 1px solid $color-neutral-100
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  display: flex
+
+  & > .tab
+    color: $color-primary-600
+    flex-grow: 1
+    display: flex
+    align-items: center
+    justify-content: center
+    font-size: 24px
+    font-family: $font-family-mono
+    font-weight: 700
+    .-faded
+      color: $color-neutral-200
+    & > svg > *
+      fill: $color-primary-600
+    &:hover
+      background-color: $color-neutral-50
+    &:active
+      background-color: $color-neutral-100

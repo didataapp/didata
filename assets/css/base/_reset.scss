@@ -1,0 +1,26 @@
+*
+  font-family: inherit
+  font-size: inherit
+  font-weight: inherit
+  margin: 0
+  padding: 0
+  list-style: none
+  text-decoration: none
+  color: inherit
+  border: none
+  appearance: none
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+
+html,
+body
+  min-height: 100%
+
+select:-moz-focusring
+  color: transparent
+  text-shadow: 0 0 0 #000
+
+a:focus,
+button:focus,
+input:focus,
+textarea:focus
+  outline: none

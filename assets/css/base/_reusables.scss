@@ -1,0 +1,10 @@
+@mixin container
+  padding-left: calc(8px + 1vw)
+  padding-right: calc(8px + 1vw)
+  width: 100%
+
+@mixin center-align
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)

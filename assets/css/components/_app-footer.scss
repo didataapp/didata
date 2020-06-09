@@ -1,0 +1,27 @@
+.app-footer
+  height: $size-footer
+  border-top: 1px solid $color-neutral-100
+  position: fixed
+  bottom: 0
+  left: 0
+  right: 0
+  display: flex
+
+  & > .item
+    color: $color-primary-600
+    flex-grow: 1
+    display: flex
+    align-items: center
+    justify-content: center
+    & > svg > *
+      fill: $color-neutral-200
+    &.-active > svg > *
+      fill: $color-primary-500
+    &:not(.-active):hover
+      background-color: $color-neutral-50
+      & > svg > *
+        fill: $color-neutral-400
+    &:not(.-active):active
+      background-color: $color-neutral-100
+      & > svg > *
+        fill: $color-primary-700

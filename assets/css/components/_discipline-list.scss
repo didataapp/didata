@@ -1,0 +1,10 @@
+.discipline-list
+  @include container
+  display: flex
+  flex-wrap: wrap
+  position: fixed
+  top: $size-header
+  bottom: $size-footer
+  overflow-y: scroll
+  padding-top: 16px
+  padding-bottom: 16px
