@@ -37,3 +37,12 @@ Trata-se de um projeto de código aberto (open source) composto de:
 - banco de dados PostgreSQL;
 - infraestrutura com Gigalixir;
 - CI/CD com GitHub Actions;
+
+## Mantenedores
+
+- [Adriano Lisboa](https://www.linkedin.com/in/adrianolisboacorrea/)
+- [Caê Penna](https://www.linkedin.com/in/caepenna/)
+- [Denise Cerqueira](https://www.linkedin.com/in/denisecerqueira/)
+- [Fernando Almeida](https://www.linkedin.com/in/fernandoalmeida/)
+- [Pedro Koike](https://www.linkedin.com/in/pedrokoike/)
+- [Ygor Araújo](https://www.linkedin.com/in/ygoraraujo/)
