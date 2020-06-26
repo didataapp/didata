@@ -28,7 +28,7 @@ ache válido (fique à vontade :)).
 
 A comunicação (dúvidas, sugestões, etc) é feita pelas próprias issues.
 
-## Desenvolvimento
+## Arquitetura
 
 Trata-se de um projeto de código aberto (open source) composto de:
 
@@ -38,11 +38,14 @@ Trata-se de um projeto de código aberto (open source) composto de:
 - infraestrutura com Gigalixir;
 - CI/CD com GitHub Actions;
 
-## Mantenedores
+## Desenvolvedores
 
 - [Adriano Lisboa](https://www.linkedin.com/in/adrianolisboacorrea/)
 - [Caê Penna](https://www.linkedin.com/in/caepenna/)
-- [Denise Cerqueira](https://www.linkedin.com/in/denisecerqueira/)
 - [Fernando Almeida](https://www.linkedin.com/in/fernandoalmeida/)
 - [Pedro Koike](https://www.linkedin.com/in/pedrokoike/)
+
+## Conteúdo
+
+- [Denise Cerqueira](https://www.linkedin.com/in/denisecerqueira/)
 - [Ygor Araújo](https://www.linkedin.com/in/ygoraraujo/)
