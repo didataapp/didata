@@ -1,5 +1,25 @@
-<h1 class="title">Didata</h1>
-<p class="subtitle">
-  <i class="fa fa-camera-retro"></i> Phoenix + Bulma + Font Awesome
-</p>
-<figure class="image is-2by1"></figure>
+<h1 class="title is-1"> Didata </h1>
+
+<section class="bd-index-fullscreen hero is-fullheight is-light">
+  <div class="hero-body">
+    <div class="container">
+      <header class="bd-index-header">
+        <p>
+          <strong>Didata</strong> é um projeto que tem como principal objetivo ajudar alunos de escola pública a complementar
+          seus estudos com o conteúdo gratuito já é disponibilizado publicamente na internet.
+        </p>
+        <p>
+          Nessa primeira etapa propôe-se buscar, classificar, filtrar e organizar vídeos do YouTube sobre
+          todos os assuntos necessários para a realização da prova do ENEM.
+        </p>
+        <p>
+          O conteúdo é buscado e validado por colaboradores (professores, estudantes ou qualquer interessado
+          em ajudar).
+        </p>
+        <p>
+          Não temos qualquer direito sob o conteúdo e nenhum dos responsáveis pelo projeto
+          obtém, ou planeja obter, qualquer tipo de lucro com ele.
+        </p>
+      </header>
+  </div>
+</section>
