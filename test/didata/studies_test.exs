@@ -17,7 +17,7 @@ defmodule Didata.StudiesTest do
 
     test "get_objective!/1 returns the objective with given id" do
       objective = insert(:objective)
-      assert Studies.get_objective!(objective.id) == objective
+      assert Studies.get_objective(objective.id).name == objective.name
     end
 
     test "create_objective/1 with valid data creates a objective" do
@@ -38,13 +38,13 @@ defmodule Didata.StudiesTest do
     test "update_objective/2 with invalid data returns error changeset" do
       objective = insert(:objective)
       assert {:error, %Ecto.Changeset{}} = Studies.update_objective(objective, @invalid_attrs)
-      assert objective == Studies.get_objective!(objective.id)
+      assert objective.name == Studies.get_objective(objective.id).name
     end
 
     test "delete_objective/1 deletes the objective" do
       objective = insert(:objective)
       assert {:ok, %Objective{}} = Studies.delete_objective(objective)
-      assert_raise Ecto.NoResultsError, fn -> Studies.get_objective!(objective.id) end
+      assert Studies.get_objective(objective.id) == nil
     end
 
     test "change_objective/1 returns a objective changeset" do

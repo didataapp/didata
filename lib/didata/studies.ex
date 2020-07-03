@@ -1,4 +1,6 @@
 defmodule Didata.Studies do
+  import Ecto.Query
+
   @moduledoc """
   The Studies context.
   """
@@ -7,6 +9,7 @@ defmodule Didata.Studies do
   alias Didata.Repo
 
   alias Didata.Studies.Objective
+  alias Didata.Studies.Area
 
   @doc """
   Returns the list of objectives.
@@ -35,7 +38,14 @@ defmodule Didata.Studies do
       ** (Ecto.NoResultsError)
 
   """
-  def get_objective!(id), do: Repo.get!(Objective, id)
+  def get_objective(objective_id) do
+    from(
+      objective in Objective,
+      left_join: area in Area, on: area.objective_id == objective.id,
+      where: objective.id == ^objective_id,
+      preload: [:areas]
+    ) |> Repo.one()
+  end
 
   @doc """
   Creates a objective.
@@ -101,8 +111,6 @@ defmodule Didata.Studies do
   def change_objective(%Objective{} = objective) do
     Objective.changeset(objective, %{})
   end
-
-  alias Didata.Studies.Area
 
   @doc """
   Returns the list of areas.

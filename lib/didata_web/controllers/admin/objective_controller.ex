@@ -27,18 +27,28 @@ defmodule DidataWeb.Admin.ObjectiveController do
   end
 
   def show(conn, %{"id" => id}) do
-    objective = Studies.get_objective!(id)
-    render(conn, "show.html", objective: objective)
+    objective = Studies.get_objective(id)
+
+    case objective do
+      %Objective{} ->
+        render(conn, "show.html", objective: objective)
+
+      _ ->
+        conn
+        |> put_status(404)
+        |> put_view(DidataWeb.ErrorView)
+        |> render("404.html")
+    end
   end
 
   def edit(conn, %{"id" => id}) do
-    objective = Studies.get_objective!(id)
+    objective = Studies.get_objective(id)
     changeset = Studies.change_objective(objective)
     render(conn, "edit.html", objective: objective, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "objective" => objective_params}) do
-    objective = Studies.get_objective!(id)
+    objective = Studies.get_objective(id)
 
     case Studies.update_objective(objective, objective_params) do
       {:ok, objective} ->
@@ -52,7 +62,7 @@ defmodule DidataWeb.Admin.ObjectiveController do
   end
 
   def delete(conn, %{"id" => id}) do
-    objective = Studies.get_objective!(id)
+    objective = Studies.get_objective(id)
     {:ok, _objective} = Studies.delete_objective(objective)
 
     conn

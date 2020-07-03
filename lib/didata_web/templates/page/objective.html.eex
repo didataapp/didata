@@ -1,0 +1,18 @@
+<h1 class="title is-1"> Didata </h1>
+
+<section class="bd-index-fullscreen hero is-fullheight is-light">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-1">
+        Objetivo: <%= @objective.name  %>
+      </h2>
+      <%= for area <- @objective.areas do %>
+        <nav class="buttons is-centered">
+          <a class="button is-large is-primary" href="#">
+            <%= area.name %>
+          </a>
+        </nav>
+      <% end %>
+    </div>
+  </div>
+</section>

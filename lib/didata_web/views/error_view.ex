@@ -5,6 +5,10 @@ defmodule DidataWeb.ErrorView do
     "Forbidden"
   end
 
+  def render("404.html", _assigns) do
+    "Not Found"
+  end
+
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.
   # def render("500.html", _assigns) do

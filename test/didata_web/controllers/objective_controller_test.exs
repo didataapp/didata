@@ -77,9 +77,9 @@ defmodule DidataWeb.Admin.ObjectiveControllerTest do
       conn = delete(conn, Routes.admin_objective_path(conn, :delete, objective))
       assert redirected_to(conn) == Routes.admin_objective_path(conn, :index)
 
-      assert_error_sent 404, fn ->
-        get(conn, Routes.admin_objective_path(conn, :show, objective))
-      end
+      result  = get(conn, Routes.admin_objective_path(conn, :show, objective))
+
+      assert result.status == 404
     end
   end
 
