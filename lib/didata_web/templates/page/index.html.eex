@@ -21,5 +21,15 @@
           obtém, ou planeja obter, qualquer tipo de lucro com ele.
         </p>
       </header>
+
+      <h1 class="title is-1">Objetivos</h1>
+      <%= for objective <- @objectives do %>
+        <nav class="buttons is-centered">
+          <a class="button is-large is-primary" href="#">
+            <%= objective.name %>
+          </a>
+        </nav>
+      <% end %>
+    </div>
   </div>
 </section>

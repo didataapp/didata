@@ -3,6 +3,6 @@ defmodule DidataWeb.PageControllerTest do
 
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")
-    assert html_response(conn, 200) =~ "Phoenix + Bulma + Font Awesome"
+    assert html_response(conn, 200) =~ "Objetivos"
   end
 end
