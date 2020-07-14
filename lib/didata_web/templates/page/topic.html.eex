@@ -4,15 +4,15 @@
   <div class="hero-body">
     <div class="container">
       <h2 class="title is-2">
-        Disciplina: <%= @discipline.name  %>
+        Tópico: <%= @topic.name  %>
       </h2>
       <h3 class="title is-3">
-        Tópicos
+        Subtópicos
       </h3>
-      <%= for topic <- @discipline.topics do %>
+      <%= for subtopic <- @topic.subtopics do %>
         <nav class="buttons is-centered">
-          <a class="button is-large is-primary" href="<%= Routes.page_path(@conn, :topic, topic.id) %>">
-            <%= topic.name %>
+          <a class="button is-large is-primary" href="#">
+            <%= subtopic.name %>
           </a>
         </nav>
       <% end %>
