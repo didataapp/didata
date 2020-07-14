@@ -8,8 +8,11 @@ defmodule Didata.Studies do
   import Ecto.Query, warn: false
   alias Didata.Repo
 
-  alias Didata.Studies.Objective
-  alias Didata.Studies.Area
+  alias Didata.Studies.{
+    Area,
+    Discipline,
+    Objective
+  }
 
   @doc """
   Returns the list of objectives.
@@ -141,6 +144,15 @@ defmodule Didata.Studies do
   """
   def get_area!(id), do: Repo.get!(Area, id) |> Repo.preload(:objective)
 
+  def get_area(area_id) do
+    from(
+      area in Area,
+      left_join: discipline in Discipline, on: discipline.area_id == area.id,
+      where: area.id == ^area_id,
+      preload: [:disciplines]
+    ) |> Repo.one()
+  end
+
   @doc """
   Creates a area.
 
@@ -205,8 +217,6 @@ defmodule Didata.Studies do
   def change_area(%Area{} = area) do
     Area.changeset(area, %{})
   end
-
-  alias Didata.Studies.Discipline
 
   @doc """
   Returns the list of disciplines.

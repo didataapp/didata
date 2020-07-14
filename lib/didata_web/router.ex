@@ -18,6 +18,7 @@ defmodule DidataWeb.Router do
 
     get "/", PageController, :index
     get "/objectives/:objective_id", PageController, :objective
+    get "/areas/:area_id", PageController, :area
   end
 
   # Admin routes

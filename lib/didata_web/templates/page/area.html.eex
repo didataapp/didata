@@ -3,16 +3,16 @@
 <section class="bd-index-fullscreen hero is-fullheight is-light">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title is-1">
-        Objetivo: <%= @objective.name  %>
+      <h2 class="title is-2">
+        Área: <%= @area.name  %>
       </h2>
       <h3 class="title is-3">
-        Áreas
+        Disciplinas
       </h3>
-      <%= for area <- @objective.areas do %>
+      <%= for discipline <- @area.disciplines do %>
         <nav class="buttons is-centered">
-          <a class="button is-large is-primary" href="<%= Routes.page_path(@conn, :area, area.id) %>">
-            <%= area.name %>
+          <a class="button is-large is-primary" href="#">
+            <%= discipline.name %>
           </a>
         </nav>
       <% end %>

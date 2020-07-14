@@ -17,4 +17,13 @@ defmodule DidataWeb.PageController do
     |> assign(:objective, objective)
     |> render("objective.html")
   end
+
+  def area(conn, %{"area_id" => area_id}) do
+    {id, ""} = Integer.parse(area_id)
+    area = Studies.get_area(id)
+
+    conn
+    |> assign(:area, area)
+    |> render("area.html")
+  end
 end
