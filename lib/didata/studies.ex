@@ -11,7 +11,8 @@ defmodule Didata.Studies do
   alias Didata.Studies.{
     Area,
     Discipline,
-    Objective
+    Objective,
+    Topic
   }
 
   @doc """
@@ -245,6 +246,15 @@ defmodule Didata.Studies do
       ** (Ecto.NoResultsError)
 
   """
+  def get_discipline(discipline_id) do
+    from(
+      discipline in Discipline,
+      left_join: topic in Topic, on: topic.discipline_id == discipline.id,
+      where: discipline.id == ^discipline_id,
+      preload: [:topics]
+    ) |> Repo.one()
+  end
+
   def get_discipline!(id), do: Repo.get!(Discipline, id) |> Repo.preload(:area)
 
   @doc """
@@ -311,8 +321,6 @@ defmodule Didata.Studies do
   def change_discipline(%Discipline{} = discipline) do
     Discipline.changeset(discipline, %{})
   end
-
-  alias Didata.Studies.Topic
 
   @doc """
   Returns the list of topics.

@@ -26,4 +26,13 @@ defmodule DidataWeb.PageController do
     |> assign(:area, area)
     |> render("area.html")
   end
+
+  def discipline(conn, %{"discipline_id" => discipline_id}) do
+    {id, ""} = Integer.parse(discipline_id)
+    discipline = Studies.get_discipline(id)
+
+    conn
+    |> assign(:discipline, discipline)
+    |> render("discipline.html")
+  end
 end
