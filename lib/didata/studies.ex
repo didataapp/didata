@@ -13,8 +13,8 @@ defmodule Didata.Studies do
     Content,
     Discipline,
     Objective,
-    Topic,
-    Subtopic
+    Subtopic,
+    Topic
   }
 
   @doc """
@@ -47,10 +47,12 @@ defmodule Didata.Studies do
   def get_objective(objective_id) do
     from(
       objective in Objective,
-      left_join: area in Area, on: area.objective_id == objective.id,
+      left_join: area in Area,
+      on: area.objective_id == objective.id,
       where: objective.id == ^objective_id,
       preload: [:areas]
-    ) |> Repo.one()
+    )
+    |> Repo.one()
   end
 
   @doc """
@@ -150,10 +152,12 @@ defmodule Didata.Studies do
   def get_area(area_id) do
     from(
       area in Area,
-      left_join: discipline in Discipline, on: discipline.area_id == area.id,
+      left_join: discipline in Discipline,
+      on: discipline.area_id == area.id,
       where: area.id == ^area_id,
       preload: [:disciplines]
-    ) |> Repo.one()
+    )
+    |> Repo.one()
   end
 
   @doc """
@@ -251,10 +255,12 @@ defmodule Didata.Studies do
   def get_discipline(discipline_id) do
     from(
       discipline in Discipline,
-      left_join: topic in Topic, on: topic.discipline_id == discipline.id,
+      left_join: topic in Topic,
+      on: topic.discipline_id == discipline.id,
       where: discipline.id == ^discipline_id,
       preload: [:topics]
-    ) |> Repo.one()
+    )
+    |> Repo.one()
   end
 
   def get_discipline!(id), do: Repo.get!(Discipline, id) |> Repo.preload(:area)
@@ -356,7 +362,8 @@ defmodule Didata.Studies do
       topic in Topic,
       where: topic.id == ^topic_id,
       preload: [:subtopics]
-    ) |> Repo.one()
+    )
+    |> Repo.one()
   end
 
   def get_topic!(id), do: Repo.get!(Topic, id) |> Repo.preload(discipline: [area: [:objective]])
@@ -458,7 +465,8 @@ defmodule Didata.Studies do
       subtopic in Subtopic,
       where: subtopic.id == ^subtopic_id,
       preload: [:contents]
-    ) |> Repo.one()
+    )
+    |> Repo.one()
   end
 
   def get_subtopic!(id), do: Repo.get!(Subtopic, id) |> Repo.preload(:topic)
