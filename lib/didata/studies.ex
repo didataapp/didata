@@ -10,6 +10,7 @@ defmodule Didata.Studies do
 
   alias Didata.Studies.{
     Area,
+    Content,
     Discipline,
     Objective,
     Topic,
@@ -452,6 +453,14 @@ defmodule Didata.Studies do
       ** (Ecto.NoResultsError)
 
   """
+  def get_subtopic(subtopic_id) do
+    from(
+      subtopic in Subtopic,
+      where: subtopic.id == ^subtopic_id,
+      preload: [:contents]
+    ) |> Repo.one()
+  end
+
   def get_subtopic!(id), do: Repo.get!(Subtopic, id) |> Repo.preload(:topic)
 
   @doc """
@@ -518,8 +527,6 @@ defmodule Didata.Studies do
   def change_subtopic(%Subtopic{} = subtopic) do
     Subtopic.changeset(subtopic, %{})
   end
-
-  alias Didata.Studies.Content
 
   @doc """
   Returns the list of contents.

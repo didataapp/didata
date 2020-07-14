@@ -44,4 +44,13 @@ defmodule DidataWeb.PageController do
     |> assign(:topic, topic)
     |> render("topic.html")
   end
+
+  def subtopic(conn, %{"subtopic_id" => subtopic_id}) do
+    {id, ""} = Integer.parse(subtopic_id)
+    subtopic = Studies.get_subtopic(id)
+
+    conn
+    |> assign(:subtopic, subtopic)
+    |> render("subtopic.html")
+  end
 end
