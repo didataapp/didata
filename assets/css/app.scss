@@ -5,18 +5,18 @@ $fa-font-path : "~@fortawesome/fontawesome-free/webfonts";
 @import "bulma";
 
 // Ambience
-@import './ambience/colors'
-@import './ambience/typography'
-@import './ambience/sizes'
+@import './ambience/colors';
+@import './ambience/typography';
+@import './ambience/sizes';
 
 // Base
-@import './base/reset'
-@import './base/reusables'
-@import './base/responsive'
-@import './base/unclassed'
+@import './base/reset';
+@import './base/reusables';
+@import './base/responsive';
+@import './base/unclassed';
 
 // Components
-@import './components/app-header'
-@import './components/app-footer'
-@import './components/discipline-list'
-@import './components/discipline-item'
+@import './components/app-header';
+@import './components/app-footer';
+@import './components/discipline-list';
+@import './components/discipline-item';
